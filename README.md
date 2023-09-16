@@ -41,9 +41,9 @@
 
 每次进入游戏时，系统会真·随机为玩家生成与分配性别，出生地点，初始属性，家庭背景等。此外，每个人都会获得一首属于自己的独一无二的诗。
 
-<img src="./previews/birth.png" alt="Birth Scene" width="600">
+<img src="./previews/birth.png" alt="Birth Scene" width="500">
 
-<img src="./previews/birth2.png" alt="Another Birth Scene" width="600">
+<img src="./previews/birth2.png" alt="Another Birth Scene" width="500">
 
 #### 事件
 
@@ -51,11 +51,11 @@
 每个事件与选项都是由GPT4 Code Interpreter 实时生成的，所以包罗万象。
 您的每一个选择都会改变人物的人生走向或属性，请谨慎选择。
 
-<img src="./previews/childhood.png" alt="Childhood 1" width="400">
-<img src="./previews/childhood_2.png" alt="Childhood 2" width="400">
-<img src="./previews/earlyadulthood.png" alt="Early Adulthood" width="400">
-<img src="./previews/mid_adulthood.png" alt="Mid Adulthood" width="400">
-<img src="./previews/late_adulthood.png" alt="Late Adulthood" width="400">
+<img src="./previews/childhood.png" alt="Childhood 1" width="500">
+<img src="./previews/childhood_2.png" alt="Childhood 2" width="500">
+<img src="./previews/earlyadulthood.png" alt="Early Adulthood" width="500">
+<img src="./previews/mid_adulthood.png" alt="Mid Adulthood" width="500">
+<img src="./previews/late_adulthood.png" alt="Late Adulthood" width="500">
 
 ### 🤝 开源与合作
 
@@ -75,6 +75,13 @@
 - 📞 微信公众号: [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg)
 
 ---
+### 广告时间
+
+我会在我的微信公众号[财猫AI](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkxNTU1MTY3OA==&action=getalbum&album_id=3086731117975814150&scene=173&from_msgid=2247484520&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
+上更新一系列提示工程文章，敬请关注。
+
+此外，你可以在微信读书上读到我的出版书籍《ChatGPT进阶 提示工程入门》，也可以通过电商渠道购买。
+<img src="./previews/book.jpeg" alt="Book Display" width="300">
 
 ### Special Thanks
 
