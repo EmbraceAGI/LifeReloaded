@@ -33,6 +33,30 @@
 
 🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/hamutama/LifeReloaded) 或向公众号 [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg) 发送“LifeReloaded”以取得最新版本。
 
+### 🎮游戏预览
+
+下面是一些游戏预览的截图。由于大语言模型的随机性，您的游戏体验可能会由于运气上下波动。
+
+#### 初始化
+
+每次进入游戏时，系统会真·随机为玩家生成与分配性别，出生地点，初始属性，家庭背景等。此外，每个人都会获得一首属于自己的独一无二的诗。
+
+<img src="./previews/birth.png" alt="Birth Scene" width="600">
+
+<img src="./previews/birth2.png" alt="Another Birth Scene" width="600">
+
+#### 事件
+
+玩家会在不同的人生阶段遇到不同的事件，可以对事件做出反应。
+每个事件与选项都是由GPT4 Code Interpreter 实时生成的，所以包罗万象。
+您的每一个选择都会改变人物的人生走向或属性，请谨慎选择。
+
+<img src="./previews/childhood.png" alt="Childhood 1" width="400">
+<img src="./previews/childhood_2.png" alt="Childhood 2" width="400">
+<img src="./previews/earlyadulthood.png" alt="Early Adulthood" width="400">
+<img src="./previews/mid_adulthood.png" alt="Mid Adulthood" width="400">
+<img src="./previews/late_adulthood.png" alt="Late Adulthood" width="400">
+
 ### 🤝 开源与合作
 
 🔗 本游戏得到了[EmbraceAGI](https://github.com/EmbraceAGI) 开源社区的支持，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目。
@@ -61,5 +85,7 @@
 给了本Prompt一些启发。
 
 ---
+
 🎮 **不要再等了，快来体验一把你的第二人生吧！**
+
 ---
