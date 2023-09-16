@@ -22,16 +22,18 @@
 4. **随机性与可玩性**: 利用GPT-4的高级数据分析（原code interpreter）功能，由顶尖AI生成包罗万象的丰富人生，事件与属性真·随机。每一次游戏都是全新的体验。
 
 ## 📥 安装与运行
+要运行游戏， 请打开GPT-4 的 [Advanced Data Analysis（原 Code Interpreter）功能](https://chat.openai.com/?model=gpt-4-code-interpreter)
+，并将[LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)中的所有内容复制粘贴进对话框中运行。
 
 ### 前置条件
 
-⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。**
+⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。目前该功能仅向ChatGPT Plus用户开放。**
 
 ### 获取更新
 
 🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/hamutama/LifeReloaded) 或向公众号 [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg) 发送“LifeReloaded”以取得最新版本。
 
-## 🤝 开源与社区
+## 🤝 开源与合作
 
 🔗 本游戏得到了[EmbraceAGI](https://github.com/EmbraceAGI) 开源社区的支持，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目。
 
