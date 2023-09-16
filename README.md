@@ -80,7 +80,7 @@
 
 - [Mr.renedeer项目](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor)，这个才华横溢的Prompt给了我很大启发。
 - 《红楼梦》作者曹雪芹，是他启发我在文中可以插入诗歌。
-- “南瓜博士”公众号，她的“可以使用Code Interpreter做一个[人生重来模拟器的Idea](https://mp.weixin.qq.com/s/gV6xvVVqG8djdmB6EAuZKw)”直接催生了本项目，该公众号的高质量文章们[该公众号的高质量文章们](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzA4MjM5MDI0Ng==&scene=1&album_id=3104850832623386631&count=3#wechat_redirect)也给我相当的启发。
+- “南瓜博士”公众号，她的“可以使用Code Interpreter做一个[人生重来模拟器的Idea](https://mp.weixin.qq.com/s/gV6xvVVqG8djdmB6EAuZKw)”直接催生了本项目，[该公众号的高质量文章们](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzA4MjM5MDI0Ng==&scene=1&album_id=3104850832623386631&count=3#wechat_redirect)也给我一些启发。
 - [刘海同学](https://nanfangshaonian.feishu.cn/wiki/WkKAwJ90uidtzVkM9IecSZB5nbg)分享的[伪代码提示词文章](https://nanfangshaonian.feishu.cn/wiki/YhNdws9LCi1JxGkpJ8dcXB3Gnih)
 给了本Prompt一些启发。
 
