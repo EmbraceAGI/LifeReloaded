@@ -27,7 +27,7 @@
 ### 📥 安装与运行
 要运行游戏， 请打开GPT-4 的 [Advanced Data Analysis（原 Code Interpreter）功能](https://chat.openai.com/?model=gpt-4-code-interpreter)
 ，并将[LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)中的所有内容复制粘贴进对话框中运行。
-
+你可以可以点击[链接](https://chat.openai.com/share/25c02186-e518-4ac0-9072-1281b2f47d84)查看prompt
 #### 前置条件
 
 ⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。目前该功能仅向ChatGPT Plus用户开放。**
