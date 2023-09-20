@@ -8,6 +8,9 @@
 ---
 
 ### 🌈 项目概览
+
+中文|[英文](./README_EN.md)
+
 该项目是一个使用GPT-4 Advanced Data Analysis（原Code Interpreter）功能驱动的模拟人生游戏。
 
 游戏内容由顶尖人工智能 GPT4 实时生成，给您包罗万象，丰富多彩的真实人生体验。
