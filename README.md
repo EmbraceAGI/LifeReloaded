@@ -6,10 +6,12 @@
 > 如果你曾对人生有过无数的“如果”和“要是”，**人生重来模拟器 LifeReloaded** 给你一个重开的机会，焕发人生第二春！
 
 ---
-
+### 👬🏻 加入交流社区请点击链接微信群
+交流社区面向玩家与开发者。作者在群里，你可以在这里学到如何写出类似游戏的提示工程技巧。
+[链接](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g?from=from_copylink)
 ### 🌈 项目概览
 
-中文|[英文](./README_EN.md)
+中文|[English](./README_EN.md)
 
 该项目是一个使用GPT-4 Advanced Data Analysis（原Code Interpreter）功能驱动的模拟人生游戏。
 
