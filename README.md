@@ -68,7 +68,9 @@
 #### 普通事件
 
 玩家会在不同的人生阶段遇到不同的事件，可以对事件做出反应。
+
 每个事件与选项都是由GPT4 Code Interpreter 实时生成的。
+
 您的每一个选择都会改变人物的人生走向或属性，而属性与性别则有可能会带来特殊选项，请谨慎选择。
 
 <img src="./previews/v_0.2/childhood.jpeg" alt="Childhood 1" width="500">
