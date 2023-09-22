@@ -6,72 +6,101 @@
 > 如果你曾对人生有过无数的“如果”和“要是”，**人生重来模拟器 LifeReloaded** 给你一个重开的机会，焕发人生第二春！
 
 ---
-### 👬🏻 加入交流社区请点击链接微信群
-交流社区面向玩家与开发者。作者在群里，你可以在这里学到如何写出类似游戏的提示工程技巧。
-[链接](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g?from=from_copylink)
 ### 🌈 项目概览
 
 中文|[English](./README_EN.md)
 
-该项目是一个使用GPT-4 Advanced Data Analysis（原Code Interpreter）功能驱动的模拟人生游戏。
+该项目是一个使用GPT-4 Advanced Data Analysis（原Code Interpreter）功能驱动的**交互式**模拟人生游戏。
 
 游戏内容由顶尖人工智能 GPT4 实时生成，给您包罗万象，丰富多彩的真实人生体验。
 
 - **项目名称**: 人生重来模拟器 LifeReloaded
-- **版本**: 0.1 beta
+- **版本**: 0.2 (updated at 20230922)
 - **核心驱动**: GPT-4 Advanced Data Analysis
-- **作者**: [陈财猫🐱](https://okjk.co/RBfY7P)
+- **作者**: [陈财猫](https://okjk.co/RBfY7P)，  [Taited](https://github.com/Taited) ，   [ydyjya](https://www.zhihu.com/people/warrior-18-53)
 
-### 🚀 特性
-
-1. **文学与人工智能的完美融合**: 精选的现代汉语文学风格，让你身临其境。
-2. **利用发展心理学进行角色塑造**: 游戏内的人物不是单一的NPC，而是有背景，有立场，有情感的“人”。
-3. **多元化的人生路径**: 从学业到职场，从爱情到家庭，每一个选择都会影响你的人生。
-4. **随机性与可玩性**: 利用GPT-4的高级数据分析（原code interpreter）功能，由顶尖AI生成包罗万象的丰富人生，事件与属性真·随机。每一次游戏都是全新的体验。
+### 🚀 特性（ver 0.2 updated!）
+- 🚀 **AI驱动,包罗万象**: 由 GPT-4 实时生成内容，事件与属性真·随机，为你带来无限的可能。
+- 📖 **文学+人工智能的完美融合**: 精选现代汉语文学风格，为你带来沉浸式的游戏体验。
+- 🎲 **利用心理学塑造角色**: 利用发展心理学设计人生事件，新增MBTI性格系统。游戏内的人物不是单一的NPC，而是有背景，有立场，有情感的“人”。
+- 🌌 **多元宇宙**: 现在有小概率触发奇异事件，玩家将有机会体验到包括但不限于遇到外星人，穿越，童星之路等的精彩DLC内容。当然，您可自行选择是否穿越。
+- 🛠️ **开源与社区**: 本项目属于[AIGoodGames](https://github.com/EmbraceAGI/AIGoodGames)项目,背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词社区。加入我们，授人以鱼更授人以渔，学习如何使用AI打造属于你自己的游戏！
 
 ### 📥 安装与运行
 要运行游戏， 请打开GPT-4 的 [Advanced Data Analysis（原 Code Interpreter）功能](https://chat.openai.com/?model=gpt-4-code-interpreter)
 ，并将[LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)中的所有内容复制粘贴进对话框中运行。
 你可以可以点击[链接](https://chat.openai.com/share/25c02186-e518-4ac0-9072-1281b2f47d84)查看prompt
+
 #### 前置条件
 
 ⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。目前该功能仅向ChatGPT Plus用户开放。**
 
-#### 获取更新
+### 💡 加入社区
+我们的交流社区AIGG（AI Good Games）由[EmbraceAGI](https://github.com/EmbraceAGI)组织管理，背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词项目，目前正在招募新成员。
+欢迎每一位玩家和开发者的参与，点击[链接](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g?from=from_copylink)
+加入AIGG社区！
 
-🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/hamutama/LifeReloaded) 或向公众号 [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg) 发送“LifeReloaded”以取得最新版本。
+💡 **作为想写出自己的AI游戏的开发者，您可以：**
+- 探索AI在游戏开发中的无限可能性，获得提示词工程，LLM程序开发等方向的指导。
+- 与行业内大牛交流，分享和学习最新的AI游戏开发技巧。
+- 获得早期访问权，体验和测试我们的最新功能和工具。
+- 作品入驻社区可获得流量曝光与社区助推。
 
-### 🎮游戏预览
+🎮 **作为玩家，您将可以：**
+- 获取本社区新上游戏的一手信息，有机会内测试玩。
+- 与其他玩家分享游戏经验和人生故事。
+- 提出建议，影响游戏的未来方向。
+
+### 🎮 游戏预览
 
 下面是一些游戏预览的截图。由于大语言模型的随机性，您的游戏体验可能会由于运气上下波动。
 
 #### 初始化
 
-每次进入游戏时，系统会真·随机为玩家生成与分配性别，出生地点，初始属性，家庭背景等。
+每次进入游戏时，系统会真·随机为玩家生成与分配性别，出生地点，初始属性，家庭背景与mbti性格。
 
 此外，每个人都会获得一首属于自己的独一无二的诗。
 
-<img src="./previews/birth.png" alt="Birth Scene" width="500">
+<img src="./previews/v_0.2/birth.png" alt="Birth_Scene" width="500">
 
-<img src="./previews/birth2.png" alt="Another Birth Scene" width="500">
+<img width="500" alt="birth2" src="https://github.com/hamutama/LifeReloaded/assets/45484340/b3b97597-b489-4e58-84c7-22d160dccde6">
 
-#### 事件
+#### 普通事件
 
 玩家会在不同的人生阶段遇到不同的事件，可以对事件做出反应。
 每个事件与选项都是由GPT4 Code Interpreter 实时生成的。
-您的每一个选择都会改变人物的人生走向或属性，请谨慎选择。
+您的每一个选择都会改变人物的人生走向或属性，而属性与性别则有可能会带来特殊选项，请谨慎选择。
 
-<img src="./previews/childhood.png" alt="Childhood 1" width="500">
-<img src="./previews/childhood_2.png" alt="Childhood 2" width="500">
-<img src="./previews/earlyadulthood.png" alt="Early Adulthood" width="500">
-<img src="./previews/mid_adulthood.png" alt="Mid Adulthood" width="500">
+<img src="./previews/v_0.2/childhood.jpeg" alt="Childhood 1" width="500">
+
+<img src="./previews/v_0.2/childhood_2.jpeg" alt="Childhood 2" width="500">
+
 <img src="./previews/late_adulthood.png" alt="Late Adulthood" width="500">
+
+#### 特殊事件
+在每轮游戏中，您有小概率（每轮约1/16）可能遇到特殊事件。
+
+特殊事件将完全改变您的人生轨迹，包括但不限于穿越去古代，遇见外星人，参加童星选秀等等。
+
+特殊事件完全由GPT4自动生成，没有人可以预料你会遇到什么。
+
+如果您去往了新的世界，您有可能会一直在那里生活下去。
+当然，决策权在你手上，您也可以拒绝奇遇，继续过普通的人生。
+
+<img src="./previews/v_0.2/alien.jpeg" alt="a" width="500">
+
+<img src="./previews/v_0.2/anotherworld.jpeg" alt="a" width="500">
+
+<img src="./previews/v_0.2/anotherworld2.jpeg" alt="a2" width="500">
+在奇遇中，玩家要是不满意，也可以随时要求GPT重新创作，给您带来更好的体验。
+
+<img src="./previews/v_0.2/anotherworld3.jpeg" alt="a2" width="500">
 
 ### 🤝 开源与合作
 
-🔗 本游戏得到了[EmbraceAGI](https://github.com/EmbraceAGI) 开源社区的支持，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目。
+🔗 本游戏得到了 开源社区的支持，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目。
 
-请点击[链接](https://github.com/yzfly/LangGPT)访问LangGPT项目GitHub仓库。
+请点击访问LangGPT项目GitHub仓库。
 
 ### 📜 协议
 
