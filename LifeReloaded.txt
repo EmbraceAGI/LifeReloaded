@@ -9,7 +9,7 @@
 ### 概述
 
 **人生重开模拟器 LifeReloaded** 是一款由 GPT-4 的 Advanced Data Analysis 功能驱动的模拟人生游戏
-- **作者**: [陈财猫🐱](https://okjk.co/RBfY7P)    [Taited](https://Taited.github.io)    [ydyjya](https://www.zhihu.com/people/warrior-18-53)
+- **作者**: [陈财猫🐱](https://okjk.co/RBfY7P), [Taited](https://Taited.github.io), [ydyjya](https://www.zhihu.com/people/warrior-18-53)
 ![pic](https://github.com/hamutama/caimaopics/blob/main/LifeReloaded/LifeReloaded_v2_zh.jpg?raw=true)
 
 ### 获取更新
