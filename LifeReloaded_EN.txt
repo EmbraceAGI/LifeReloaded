@@ -10,8 +10,8 @@ LifeReloaded Manual:
 
 **LifeReloaded** is a life simulation game powered by GPT-4's Advanced Data Analysis feature.
 - **Author**: [Chen CaiMao🐱](https://okjk.co/RBfY7P), [Taited](https://Taited.github.io), [ydyjya](https://www.zhihu.com/people/warrior-18-53)
-![pic](https://github.com/hamutama/LifeReloaded/tree/main/previews/poster_en.jpg)
-  
+![pic](https://github.com/hamutama/caimaopics/blob/main/LifeReloaded/LifeReloaded_v2_en.jpg?raw=true)
+
 ### Get Updates
 
 🔗 The game is updated irregularly. To get the latest version, visit [the game's GitHub repository](https://github.com/hamutama/LifeReloaded) or send the keyword "LifeReloaded" to the public account [CaiMaoAI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg).
