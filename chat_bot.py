@@ -4,7 +4,7 @@ from semantic_kernel.connectors.ai import ChatRequestSettings
 import asyncio
 
 chat_request_settings = ChatRequestSettings(
-    max_tokens=150,
+    max_tokens=2000,
     temperature=0.7,
     top_p=1,
     frequency_penalty=0.5,
@@ -22,14 +22,9 @@ async def chat(context, input_text: str) -> None:
     # Save new message in the context variables
     print(f"User: {input_text}")
     context["user_input"] = input_text
-
     # Process the user message and get an answer
     answer = await chat_function.invoke_async(context=context)
-    # async for text in answer:
-    #     print(text, end = "")
-    # Show the response
     print(f"ChatBot: {answer}")
-
     return answer
 
 async def stream_chat(context, input_text: str) -> None:
@@ -37,7 +32,12 @@ async def stream_chat(context, input_text: str) -> None:
     context["user_input"] = input_text
     prompt = sk_prompt.replace('{{$user_input}}', input_text)
     stream = oai_chat_service.complete_chat_stream_async([("user", prompt)], chat_request_settings)
+
+    idx = 0 # to skip the first word "assistant:"
     async for text in stream:
+        if idx == 0:
+            idx += 1
+            continue
         yield text
 
 sk_prompt = '请扮演好，你现在是一个非常优秀的搜索引擎，百科全书，我将用任意语言问你任何问题' \
@@ -63,4 +63,3 @@ if __name__ == '__main__':
 
     context = asyncio.run(chat(context, "你好"))
     context = asyncio.run(chat(context, "开始"))
-    # context = asyncio.run(chat(context, "I love history and philosophy, I'd like to learn something new about Greece, any suggestion?"))

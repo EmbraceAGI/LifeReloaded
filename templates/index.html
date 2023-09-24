@@ -10,14 +10,12 @@
     
     <script>
         async function sendMessage() {
-            let loader = document.getElementById("loader");
             let resultParagraph = document.getElementById("result_paragraph");
-
-            loader.style.display = "block"; // Show the loader
             resultParagraph.innerHTML = ""; // Clear the result paragraph
 
             let message = document.getElementById("message_input").value;
-            let response = await fetch('/chat/send/', {
+
+            const response = await fetch('/chat/send/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,10 +24,17 @@
                     message: message
                 })
             });
-            let result = await response.json();
+            const reader = response.body.getReader();
 
-            loader.style.display = "none"; // Hide the loader
-            resultParagraph.innerHTML = result.message_received; // Display the result
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) {
+                    break;
+                }
+                const text = new TextDecoder().decode(value);
+                resultParagraph.innerHTML += text;
+                
+            }
         }
     </script>
 </head>
@@ -39,9 +44,6 @@
     <input type="text" id="message_input" placeholder="Type a message...">
     <!-- <br> -->
     <button onclick="sendMessage()">Send Message</button>
-
-    <!-- Add a loader div for the spinning animation -->
-    <div id="loader"></div>
 
     <!-- Add a <p> element to display the result -->
     <p id="result_paragraph"></p>
