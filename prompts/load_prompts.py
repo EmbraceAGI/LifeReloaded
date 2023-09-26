@@ -15,3 +15,9 @@ with open('./prompts/events.txt', 'r') as fp:
     events_prompt = fp.readlines()
 events_prompt = ''.join(events_prompt)
 EVENTS = ('system', events_prompt)
+
+# init events
+with open('./prompts/evaluation.txt', 'r') as fp:
+    eval_prompt = fp.readlines()
+eval_prompt = ''.join(eval_prompt)
+EVAL = ('system', eval_prompt)
