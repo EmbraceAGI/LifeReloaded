@@ -33,7 +33,19 @@ async def read_root():
 def send_stream_message(item: Item):
     return StreamingResponse(
         stream_chat(context, item.message), media_type="text/plain")
+    
+# TODO life-reload
+# from main import Moderator
+# moderator = Moderator()
 
+# @app.get("/life-reload/", response_class=HTMLResponse)
+# async def read_root():
+#     return templates.TemplateResponse("index.html", {"request": {}})
+
+# @app.post("/life-reload/send/")
+# def send_stream_message(item: Item):
+#     return StreamingResponse(
+#         stream_chat(context, item.message), media_type="text/plain")
 
 if __name__ == '__main__':
     uvicorn.run(
