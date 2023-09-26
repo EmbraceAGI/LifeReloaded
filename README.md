@@ -24,19 +24,19 @@
 - 📖 **文学+人工智能的完美融合**: 精选现代汉语文学风格，为你带来沉浸式的游戏体验。
 - 🎲 **利用心理学塑造角色**: 利用发展心理学设计人生事件，新增MBTI性格系统。游戏内的人物不是单一的NPC，而是有背景，有立场，有情感的“人”。
 - 🌌 **多元宇宙**: 现在有小概率触发奇异事件，玩家将有机会体验到包括但不限于遇到外星人，穿越，童星之路等的精彩DLC内容。当然，您可自行选择是否穿越。
-- 🛠️ **开源与社区**: 本项目属于[AIGoodGames](https://github.com/EmbraceAGI/AIGoodGames)项目,背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词社区。加入我们，授人以鱼更授人以渔，学习如何使用AI打造属于你自己的游戏！
+- 🛠️ **持续更新**: 本项目持续更新与维护。我们可能将在未来推出由GPT-3.5-turbo API驱动的版本，敬请期待！
 
 ## 📥 安装与运行
 要运行游戏， 请打开GPT-4 的 [Advanced Data Analysis（原 Code Interpreter）功能](https://chat.openai.com/?model=gpt-4-code-interpreter)
 ，并将[LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)中的所有内容复制粘贴进对话框中运行。
-你可以可以点击[链接](https://chat.openai.com/share/25c02186-e518-4ac0-9072-1281b2f47d84)查看prompt
+你可以可以点击[链接](https://chat.openai.com/share/24f85e33-89a5-43be-aa8a-ee7da739c38a)查看prompt
 
 ### 前置条件
 
 ⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。目前该功能仅向ChatGPT Plus用户开放。**
 
 ## 💡 加入社区
-我们的交流社区AIGG（AI Good Games）由[EmbraceAGI](https://github.com/EmbraceAGI)组织管理，背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词项目，目前正在招募新成员。
+我们的交流社区AIGG（AI Good Games）由[EmbraceAGI](https://github.com/EmbraceAGI)组织支持，背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词项目，目前正在招募新成员。
 欢迎每一位玩家和开发者的参与，点击[链接](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g?from=from_copylink)
 加入AIGG社区！
 
@@ -71,7 +71,7 @@
 
 每个事件与选项都是由GPT4 Code Interpreter 实时生成的。
 
-您的每一个选择都会改变人物的人生走向或属性，而属性与性别则有可能会带来特殊选项，请谨慎选择。
+您的每一个选择都会改变人物的人生走向或属性，而属性与性格则有可能会带来特殊选项，请谨慎选择。
 
 <img src="./previews/childhood.jpeg" alt="Childhood 1" width="500">
 
@@ -80,7 +80,7 @@
 <img src="./previews/late_adulthood.png" alt="Late Adulthood" width="500">
 
 ### 特殊事件
-在每轮游戏中，您有小概率（每轮约1/16）可能遇到特殊事件。
+在每轮游戏中，您有小概率（每轮约1/10）可能遇到特殊事件。
 
 特殊事件将完全改变您的人生轨迹，包括但不限于穿越去古代，遇见外星人，参加童星选秀等等。
 
@@ -99,11 +99,11 @@
 
 <img src="./previews/anotherworld3.jpeg" alt="a2" width="500">
 
-## 🤝 开源与合作
+### 人生的终结
+每一个人生都有终结的时候，死亡是所有人的宿命。无论是英年早逝还是神龟虽寿，您都将在本次人生结束后获得一个墓志铭。
 
-🔗 本游戏得到了 开源社区的支持，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目。
-
-请点击访问LangGPT项目GitHub仓库。
+<img src="./previews/death1.jpeg" alt="a2" width="500">
+<img src="./previews/death2.jpeg" alt="a2" width="500">
 
 ## 📜 协议
 
