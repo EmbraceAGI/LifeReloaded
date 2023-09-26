@@ -19,10 +19,15 @@
 
 ### 开源与社区
 
-🔗 本游戏由[EmbraceAGI](https://github.com/EmbraceAGI)管理，与 [LangGPT](http://feishu.langgpt.ai) 为姊妹项目，使用[CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议开源
+🌟 **EmbraceAGI社区**  
+[EmbraceAGI](https://github.com/EmbraceAGI)是一个活跃，开源，有爱的AI社区，它在GitHub上托管了多个开源项目，包括LangGPT结构化提示词等。
 
-🌟 点击[链接](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g)加入 AIGG (AI Good Games)社群，与其他玩家&开发者交流，DIY属于你的AI游戏！
-🌐 点击 [AIGG Github主页](https://github.com/EmbraceAGI/AIGoodGames) 探索更多AI驱动的游戏!
+🎮 **AIGG (AI Good Games)项目**  
+- AIGG是EmbraceAGI社区下的特色项目，致力于开发AI驱动的游戏，从有穷中觅无穷。
+- **本游戏**是AIGG项目成员，使用[CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)协议开源。
+- [AIGG项目的GitHub主页](https://github.com/EmbraceAGI/AIGoodGames)提供了更多AI驱动的游戏资源。
+- 想要与游戏玩家和开发者交流？点击[这里](https://ubdnzdt3m9.feishu.cn/wiki/PqXxw0Sa7iRCUUksuaDcEWDin5g)加入AIGG的微信群，并DIY你自己的AI游戏！
+
 
 ### 注意事项
 ⚠️ **注意**: 请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行
