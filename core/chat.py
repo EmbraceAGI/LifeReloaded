@@ -2,8 +2,8 @@ import asyncio
 from typing import List
 
 import semantic_kernel as sk
-from semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion
 from semantic_kernel.connectors.ai import ChatRequestSettings
+from semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion
 
 
 class Chat:
@@ -18,7 +18,8 @@ class Chat:
         )
 
         api_key, org_id = sk.openai_settings_from_dot_env()
-        self.oai_chat_service = OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id)
+        self.oai_chat_service = OpenAIChatCompletion('gpt-3.5-turbo', api_key,
+                                                     org_id)
 
     def __call__(self, chat_list: List):
         return self.chat(chat_list)
@@ -27,7 +28,7 @@ class Chat:
         stream = self.oai_chat_service.complete_chat_stream_async(
             chat_list, self.chat_request_settings)
 
-        idx = 0 # to skip the first word "assistant:"
+        idx = 0  # to skip the first word "assistant:"
         async for text in stream:
             if idx == 0:
                 idx += 1
@@ -47,7 +48,7 @@ class Chat:
 
 if __name__ == '__main__':
     from core import Person
-    from prompts import RULES, BACKGROUND, EVENTS
+    from prompts import BACKGROUND, EVENTS, RULES
     person = Person()
     chat = Chat()
     chat_list = [RULES, BACKGROUND, ('user', str(person))]

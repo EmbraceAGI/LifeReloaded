@@ -1,4 +1,3 @@
-from .load_prompts import RULES, BACKGROUND, EVENTS, EVAL
+from .load_prompts import BACKGROUND, EVAL, EVENTS, RULES
 
-
-__all__ = ['RULES', 'BACKGROUND', 'EVENTS','EVAL']
+__all__ = ['RULES', 'BACKGROUND', 'EVENTS', 'EVAL']
