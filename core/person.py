@@ -1,4 +1,5 @@
 import copy
+import json
 import random
 
 cities = [
@@ -42,10 +43,14 @@ class Person:
         self.attribute = attribute
 
     def __str__(self) -> str:
-        person_prompt = f'城市: {self.city}, 年龄: {self.age}, ' \
-            f'性别: {self.gender}, MBTI类型: {self.mbti_type}, ' \
-            f'属性: {self.attribute}'
-        return person_prompt
+        person_prompt = {
+            '性别': self.gender,
+            '城市': self.city,
+            '年龄': self.age,
+            '性格': self.mbti_type,
+            '属性': self.attribute
+        }
+        return json.dumps(person_prompt)
 
 
 if __name__ == '__main__':
