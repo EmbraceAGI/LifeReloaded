@@ -4,13 +4,13 @@ import re
 import time
 import uuid
 
-from core import Chat, Person, Redis
+from core import Chat, Database, Person
 from prompts import BACKGROUND, EVAL, EVENTS, RULES
 
 
 class Moderator:
     def __init__(self, expiration=1800, debug=False) -> None:
-        self.redis = Redis(time_out=expiration, debug=debug)
+        self.redis = Database(time_out=expiration, debug=debug)
         self.chat = Chat(max_tokens=1500, debug=debug)
         self.expiration = expiration
         self.option_indicator = r'\n\d+\. '

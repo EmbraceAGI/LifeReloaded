@@ -1,5 +1,5 @@
 from .chat import Chat
+from .database import Database
 from .person import Person
-from .redis import Redis
 
-__all__ = ['Person', 'Chat', 'Redis']
+__all__ = ['Person', 'Chat', 'Database']
