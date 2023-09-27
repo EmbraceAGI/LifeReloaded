@@ -1,4 +1,3 @@
-import asyncio
 import random
 import re
 import time
@@ -20,25 +19,30 @@ class Moderator:
         data_dict = {'time': time.perf_counter(), 'person': str(person)}
         self.redis.update(session_id, data_dict)
 
-    def generate_background(self, session_id):
+    async def generate_background(self, session_id):
         data_dict = self.redis.fetch(session_id)
 
         chat_list = [RULES, BACKGROUND, ('user', str(data_dict['person']))]
-        chat_flow = self.chat(chat_list)
-        context = asyncio.run(self.chat.consume_chat(chat_flow))
+        chat_stream = self.chat(chat_list)
+        context = ''
+        async for text in chat_stream:
+            context += text
+            yield text
         data_dict['background'] = context
         self.redis.update(session_id, data_dict)
-        return chat_flow
 
-    def generate_events(self, session_id):
+    async def generate_events(self, session_id):
         data_dict = self.redis.fetch(session_id)
 
         chat_list = [
             RULES, EVENTS, ('user', data_dict['background']),
             ('user', str(data_dict['person']))
         ]
-        chat_flow = self.chat(chat_list)
-        context = asyncio.run(self.chat.consume_chat(chat_flow))
+        chat_stream = self.chat(chat_list)
+        context = ''
+        async for text in chat_stream:
+            context += text
+            yield text
         event, option = self.parse_events(context)
         event_data = {'event': event, 'option': option}
         if 'events' in data_dict:
@@ -46,9 +50,8 @@ class Moderator:
         else:
             data_dict['events'] = [event_data]
         self.redis.update(session_id, data_dict)
-        return chat_flow
 
-    def evaluate_selection(self, session_id, selection: int):
+    async def evaluate_selection(self, session_id, selection: int):
         data_dict = self.redis.fetch(session_id)
         assert selection > 0 and selection <= 5
 
@@ -58,8 +61,11 @@ class Moderator:
             ('user', data_dict['events'][-1]['option']),
             ('user', str(selection))
         ]
-        chat_flow = self.chat(chat_list)
-        context = asyncio.run(self.chat.consume_chat(chat_flow))
+        chat_stream = self.chat(chat_list)
+        context = ''
+        async for text in chat_stream:
+            context += text
+            yield text
         data_dict['events'][-1]['result'] = context
 
         # update age and personality
@@ -67,7 +73,6 @@ class Moderator:
         data_dict['person']['年龄'] += added_age
         # TODO parse the 属性
         self.redis.update(session_id, data_dict)
-        return chat_flow
 
     def parse_events(self, event: str):
         start = re.search(self.option_indicator, event).start() + 1
@@ -87,6 +92,12 @@ class Moderator:
 
 
 if __name__ == '__main__':
+    import asyncio
+
+    async def iterate_stream(stream):
+        async for _ in stream:
+            continue
+
     moderator = Moderator(debug=True)
 
     session_id = str(uuid.uuid4())
@@ -94,12 +105,13 @@ if __name__ == '__main__':
     print(session_id)
 
     moderator.init_player(session_id)
-    moderator.generate_background(session_id)
+    asyncio.run(iterate_stream(moderator.generate_background(session_id)))
 
     while True:
         if not moderator.is_alive(session_id):
             break
-        moderator.generate_events(session_id)
+        asyncio.run(iterate_stream(moderator.generate_events(session_id)))
         selection = input()
-        moderator.evaluate_selection(session_id, int(selection))
-    stop = 1
+        asyncio.run(
+            iterate_stream(
+                moderator.evaluate_selection(session_id, int(selection))))

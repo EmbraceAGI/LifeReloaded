@@ -7,6 +7,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 from chat_bot import context, stream_chat
+from moderator import Moderator
 
 
 class Item(BaseModel):
@@ -14,7 +15,7 @@ class Item(BaseModel):
 
 
 templates = Jinja2Templates(directory='templates')
-
+moderator = Moderator(debug=True)
 app = FastAPI(redoc_url='/chat/docs')
 
 # Set up CORS middleware
@@ -41,18 +42,19 @@ def send_stream_message(item: Item):
                              media_type='text/plain')
 
 
-# TODO life-reload
-# from main import Moderator
-# moderator = Moderator()
+@app.get('/life-reload/', response_class=HTMLResponse)
+async def game_root():
+    return templates.TemplateResponse('game.html', {'request': {}})
 
-# @app.get("/life-reload/", response_class=HTMLResponse)
-# async def read_root():
-#     return templates.TemplateResponse("index.html", {"request": {}})
 
-# @app.post("/life-reload/send/")
-# def send_stream_message(item: Item):
-#     return StreamingResponse(
-#         stream_chat(context, item.message), media_type="text/plain")
+@app.get('/life-reload/begin/')
+async def game_init():
+    # TODO need to be acquired from the
+    session_id = '5b845b00-a839-48f5-8e03-0f38e8cb16f6'
+    moderator.init_player(session_id)
+    return StreamingResponse(moderator.generate_background(session_id),
+                             media_type='text/plain')
+
 
 if __name__ == '__main__':
     uvicorn.run('app:app',

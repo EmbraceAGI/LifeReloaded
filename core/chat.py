@@ -33,17 +33,11 @@ class Chat:
             if idx == 0:
                 idx += 1
                 continue
-            yield text
-
-    async def consume_chat(self, chat_flow):
-        data = ''
-        async for chat in chat_flow:
-            data = data + chat
             if self.debug:
-                print(chat, end='')
+                print(text, end='')
+            yield text
         if self.debug:
             print('')
-        return data + '\n'
 
 
 if __name__ == '__main__':
