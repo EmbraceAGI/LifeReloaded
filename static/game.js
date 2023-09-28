@@ -5,11 +5,13 @@ async function getBackground() {
     const sessionId = localStorage.getItem('session_id');
 
     const response = await fetch('/life-reload/begin/', {
-        method: 'GET',
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'session_id': sessionId
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            session_id: sessionId
+        })
     });
     const reader = response.body.getReader();
 
@@ -29,11 +31,13 @@ async function getBackground() {
 window.onload = function() {
     const sessionId = localStorage.getItem('session_id');
     fetch('/life-reload/init/', {
-        method: 'GET',
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'session_id': sessionId
-        }
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            session_id: sessionId
+        })
     })
         .then(response => response.json())
         .then(data => {

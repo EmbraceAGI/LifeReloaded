@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -11,11 +11,12 @@ from moderator import Moderator
 
 
 class Item(BaseModel):
-    message: str
+    message: str = None
+    session_id: str = None
 
 
 templates = Jinja2Templates(directory='templates')
-moderator = Moderator(debug=True)
+moderator = Moderator(debug=False)
 app = FastAPI(redoc_url='/chat/docs')
 
 # Set up CORS middleware
@@ -50,16 +51,16 @@ async def game_root():
     return templates.TemplateResponse('game.html', {'request': {}})
 
 
-@app.get('/life-reload/init/')
-async def game_init(request: Request):
-    session_id = request.headers.get('session_id')
+@app.post('/life-reload/init/')
+async def game_init(item: Item):
+    session_id = item.session_id
     user_data = moderator.init_player(session_id)
     return user_data
 
 
-@app.get('/life-reload/begin/')
-async def game_begin(request: Request):
-    session_id = request.headers.get('session_id')
+@app.post('/life-reload/begin/')
+async def game_begin(item: Item):
+    session_id = item.session_id
     return StreamingResponse(moderator.generate_background(session_id),
                              media_type='text/plain')
 
