@@ -4,13 +4,15 @@
 
 To install the necessary dependencies for this project, use the following command:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
-If you wish to improve the performance, please configure a Redis service on your local machine and install python redis dependency:
+#### Optional: Redis Configuration for Improved Performance
 
-```
+If you wish to improve the performance, please configure a Redis service on your local machine and install the Python redis dependency:
+
+```bash
 pip install redis
 ```
 
@@ -22,8 +24,8 @@ For the proper functioning of this project, you need to set some environment var
 
 - The content structure of `.env` should mirror that of `.env.example`. However, make sure to update specific values. Particularly:
 
-  - Replace the placeholder for the API key with your actual API key.
-  - Replace the placeholder for the Redis password with your actual password.
+  - Replace the placeholder for the `OPENAI_API_KEY` with your actual API key.
+  - Replace the placeholder for the `REDIS` with your actual Redis password.
 
 **Note**: If you're planning to run the project locally without Redis, maintain the `REDIS` attribute as given in `.env.example` without any changes.
 

@@ -5,51 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>人生重启</title>
-    <style>
-        /* 居中样式 */
-        .centered {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        /* Markdown容器样式 */
-        .markdown-container {
-            display: none;
-            border: 1px solid black;
-            padding: 15px;
-            max-height: 300px;  /* 可以根据需要调整 */
-            overflow-y: scroll;
-        }
-    </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="icon" type="image/png" href="/life-reload/static/icon.png">
+    <link rel="stylesheet" href="/life-reload/static/game.css">
+    <script src="/life-reload/static/game.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
     <script>
-        async function sendMessage() {
-            document.getElementById('beginButton').style.display = 'none';
-            let resultParagraph = document.getElementById("markdownArea");
-            // resultParagraph.innerHTML = ""; // Clear the result paragraph
-
-            const response = await fetch('/life-reload/begin/', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const reader = response.body.getReader();
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) {
-                    break;
-                }
-                const text = new TextDecoder().decode(value);
-                console.log(text)
-                resultParagraph.innerHTML += text;
-
-            }
-        };
+        let sessionId = uuidv4();
+        localStorage.setItem('session_id', sessionId);
     </script>
 
 </head>
@@ -57,9 +20,31 @@
 <body>
 
 <div class="centered">
-    <button id="beginButton" onclick="sendMessage()">开始游戏</button>
-    <!-- <div class="markdown-container" id="markdownArea"></div> -->
-    <p id="markdownArea"></p>
+    <div class="card">
+        <div class="card-title">个人信息</div>
+        <div class="card-row ">
+            <div class="card-item" id="gender">性别: </div>
+            <div class="card-item" id="city">城市: </div>
+            <div class="card-item" id="age">年龄: </div>
+            <div class="card-item" id="personality">性格: </div>
+        </div>
+        <div class="card-row">
+            <div id="charm">魅力: </div>
+            <div id="intelligence">智力: </div>
+            <div id="health">健康: </div>
+            <div id="wealth">富裕: </div>
+            <div id="happiness">幸福度: </div>
+        </div>
+    </div>
+
+    <div class="markdown-container" id="markdownArea">
+    </div>
+
+    <div class="buttons">
+        <button class="button" id="beginButton" onclick="getBackground()">生成背景</button>
+        <button class="button" id="beginButton" onclick="getBackground()">生成事件</button>
+    </div>
+
 </div>
 
 </body>

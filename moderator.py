@@ -1,3 +1,4 @@
+import json
 import random
 import re
 import time
@@ -18,6 +19,7 @@ class Moderator:
         person = Person()
         data_dict = {'time': time.perf_counter(), 'person': str(person)}
         self.redis.update(session_id, data_dict)
+        return json.loads(str(person))
 
     async def generate_background(self, session_id):
         data_dict = self.redis.fetch(session_id)

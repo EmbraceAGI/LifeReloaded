@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -29,6 +29,9 @@ app.add_middleware(
     allow_headers=['*'],
 )
 app.mount('/chat/static', StaticFiles(directory='static'), name='static')
+app.mount('/life-reload/static',
+          StaticFiles(directory='static'),
+          name='static')
 
 
 @app.get('/chat/', response_class=HTMLResponse)
@@ -47,11 +50,16 @@ async def game_root():
     return templates.TemplateResponse('game.html', {'request': {}})
 
 
+@app.get('/life-reload/init/')
+async def game_init(request: Request):
+    session_id = request.headers.get('session_id')
+    user_data = moderator.init_player(session_id)
+    return user_data
+
+
 @app.get('/life-reload/begin/')
-async def game_init():
-    # TODO need to be acquired from the
-    session_id = '5b845b00-a839-48f5-8e03-0f38e8cb16f6'
-    moderator.init_player(session_id)
+async def game_begin(request: Request):
+    session_id = request.headers.get('session_id')
     return StreamingResponse(moderator.generate_background(session_id),
                              media_type='text/plain')
 

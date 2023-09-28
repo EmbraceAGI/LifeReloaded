@@ -1,0 +1,63 @@
+.card {
+    display: none; /* hide this at first*/
+    flex-wrap: wrap; /* 允许子元素换行 */
+    max-width: 80%;
+    max-height: 15%;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    flex-basis: 100%; /* 让标题独占一行 */
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.card-item {
+    margin-bottom: 5px;
+}
+
+.card .card-row {
+    display: flex;
+    flex-basis: 100%; /* 让每个行容器独占一行 */
+    justify-content: space-between; /* 使每行中的元素间距相等 */
+}
+
+.card-attributes div {
+    margin: 5px 0;
+}
+
+/* 居中样式 */
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons button {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+/* Markdown容器样式 */
+.markdown-container {
+    border: 1px solid black;
+    padding: 15px;
+    margin-bottom: 15px;
+    height: 70%;
+    width: 70%;
+    max-height: 60%;
+    max-width: 70%;
+    overflow-y: scroll;
+}
