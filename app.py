@@ -13,6 +13,7 @@ from moderator import Moderator
 class Item(BaseModel):
     message: str = None
     session_id: str = None
+    selection: int = None
 
 
 templates = Jinja2Templates(directory='templates')
@@ -63,6 +64,42 @@ async def game_begin(item: Item):
     session_id = item.session_id
     return StreamingResponse(moderator.generate_background(session_id),
                              media_type='text/plain')
+
+
+@app.post('/life-reload/event/')
+async def game_event(item: Item):
+    session_id = item.session_id
+    return StreamingResponse(moderator.generate_events(session_id),
+                             media_type='text/plain')
+
+
+@app.post('/life-reload/parsed_event/')
+async def parsed_event(item: Item):
+    session_id = item.session_id
+    event, option = moderator.get_parsed_event(session_id)
+    data = {'event': event, 'option': option}
+    return data
+
+
+@app.post('/life-reload/evaluation/')
+async def evaluation(item: Item):
+    session_id = item.session_id
+    selection = item.selection
+    return StreamingResponse(moderator.evaluate_selection(
+        session_id, selection),
+                             media_type='text/plain')
+
+
+@app.post('/life-reload/is_alive/')
+async def is_alive(item: Item):
+    session_id = item.session_id
+    return moderator.is_alive(session_id)
+
+
+@app.post('/life-reload/get_person/')
+async def get_person(item: Item):
+    session_id = item.session_id
+    return moderator.get_person_info(session_id)
 
 
 if __name__ == '__main__':

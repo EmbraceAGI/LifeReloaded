@@ -22,27 +22,28 @@
 <div class="centered">
     <div class="card">
         <div class="card-title">个人信息</div>
-        <div class="card-row ">
-            <div class="card-item" id="gender">性别: </div>
-            <div class="card-item" id="city">城市: </div>
-            <div class="card-item" id="age">年龄: </div>
-            <div class="card-item" id="personality">性格: </div>
+        <div class="card-row">
+            <div class="card-item">性别: <span id="gender"></span></div>
+            <div class="card-item">城市: <span id="city"></span></div>
+            <div class="card-item">年龄: <span id="age"></span></div>
+            <div class="card-item">性格: <span id="personality"></span></div>
         </div>
         <div class="card-row">
-            <div id="charm">魅力: </div>
-            <div id="intelligence">智力: </div>
-            <div id="health">健康: </div>
-            <div id="wealth">富裕: </div>
-            <div id="happiness">幸福度: </div>
+            <div class="card-item">魅力: <span id="charm"></span></div>
+            <div class="card-item">智力: <span id="intelligence"></span></div>
+            <div class="card-item">健康: <span id="health"></span></div>
+            <div class="card-item">富裕: <span id="wealth"></span></div>
+            <div class="card-item">幸福度: <span id="happiness"></span></div>
         </div>
     </div>
 
     <div class="markdown-container" id="markdownArea">
+        <div id="option-container"></div>
     </div>
 
     <div class="buttons">
         <button class="button" id="beginButton" onclick="getBackground()">生成背景</button>
-        <button class="button" id="beginButton" onclick="getBackground()">生成事件</button>
+        <button class="button" id="beginButton" onclick="getLifeEvent()">生成事件</button>
     </div>
 
 </div>

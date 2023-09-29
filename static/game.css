@@ -14,12 +14,13 @@
     flex-basis: 100%; /* 让标题独占一行 */
     font-weight: bold;
     margin-bottom: 5px;
-    font-size: 18px;
+    font-size: medium;
     text-align: center;
 }
 
 .card-item {
     margin-bottom: 5px;
+    font-size: small;
 }
 
 .card .card-row {
@@ -29,7 +30,7 @@
 }
 
 .card-attributes div {
-    margin: 5px 0;
+    margin: 3px 0;
 }
 
 /* 居中样式 */
