@@ -92,6 +92,16 @@ class Moderator:
             return False
         return True
 
+    def get_parsed_event(self, session_id):
+        data_dict = self.redis.fetch(session_id)
+        event = data_dict['events'][-1]['event']
+        option = data_dict['events'][-1]['option']
+        return event, option
+
+    def get_person_info(self, session_id):
+        data_dict = self.redis.fetch(session_id)
+        return data_dict['person']
+
 
 if __name__ == '__main__':
     import asyncio
