@@ -81,7 +81,7 @@ button:disabled {
 .markdown-container {
     border: 1px solid #ccc;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     height: 70%;
     width: 70%;
     max-height: 60%;
