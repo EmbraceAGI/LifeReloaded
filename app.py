@@ -69,6 +69,7 @@ async def game_begin(item: Item):
 @app.post('/life-reload/event/')
 async def game_event(item: Item):
     session_id = item.session_id
+    assert session_id is not None
     return StreamingResponse(moderator.generate_events(session_id),
                              media_type='text/plain')
 
@@ -76,6 +77,7 @@ async def game_event(item: Item):
 @app.post('/life-reload/parsed_event/')
 async def parsed_event(item: Item):
     session_id = item.session_id
+    assert session_id is not None
     event, option = moderator.get_parsed_event(session_id)
     data = {'event': event, 'option': option}
     return data
@@ -85,6 +87,7 @@ async def parsed_event(item: Item):
 async def evaluation(item: Item):
     session_id = item.session_id
     selection = item.selection
+    assert session_id is not None and selection is not None
     return StreamingResponse(moderator.evaluate_selection(
         session_id, selection),
                              media_type='text/plain')
@@ -93,12 +96,14 @@ async def evaluation(item: Item):
 @app.post('/life-reload/is_alive/')
 async def is_alive(item: Item):
     session_id = item.session_id
+    assert session_id is not None
     return moderator.is_alive(session_id)
 
 
 @app.post('/life-reload/get_person/')
 async def get_person(item: Item):
     session_id = item.session_id
+    assert session_id is not None
     return moderator.get_person_info(session_id)
 
 

@@ -204,7 +204,7 @@ function generateButtons(inputStr) {
     if (matches) {
         matches.forEach((option, index) => {
             const btn = document.createElement("button");
-            btn.innerText = option.trim();
+            btn.innerHTML = strongText(option.trim());
             btn.onclick = () => evaluate(index + 1);
             container.appendChild(btn);
             markdown_container.scrollTop = markdown_container.scrollHeight
@@ -274,4 +274,8 @@ async function updatePerson() {
     .catch(error => {
         console.log('There was a problem with the fetch operation:', error.message);
     });
+}
+
+function strongText(text) {
+    return text.replace(/\*\*(.*?)\*\*/g, '<span id="bold-text">$1</span>');
 }

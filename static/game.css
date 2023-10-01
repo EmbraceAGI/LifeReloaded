@@ -1,39 +1,43 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
 .card {
-    display: none; /* hide this at first*/
-    flex-wrap: wrap; /* 允许子元素换行 */
+    display: none;
+    flex-wrap: wrap;
     max-width: 80%;
-    max-height: 15%;
-    padding: 10px;
-    margin: 10px auto;
+    padding: 15px;
+    margin: 20px auto;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .card-title {
-    flex-basis: 100%; /* 让标题独占一行 */
+    flex-basis: 100%;
     font-weight: bold;
-    margin-bottom: 5px;
-    font-size: medium;
+    margin-bottom: 10px;
+    font-size: 18px;
     text-align: center;
+    color: #555;
 }
 
 .card-item {
-    margin-bottom: 5px;
-    font-size: small;
+    margin-bottom: 8px;
+    font-size: 14px;
 }
 
-.card .card-row {
+.card-row {
     display: flex;
-    flex-basis: 100%; /* 让每个行容器独占一行 */
-    justify-content: space-between; /* 使每行中的元素间距相等 */
+    flex-basis: 100%;
+    justify-content: space-between;
 }
 
-.card-attributes div {
-    margin: 3px 0;
-}
-
-/* 居中样式 */
 .centered {
     display: flex;
     flex-direction: column;
@@ -42,23 +46,48 @@
     height: 100vh;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
+#option-container button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #4b9ae9;
+    font-size: 14px;
 }
 
-.buttons button {
-    margin-left: 3px;
-    margin-right: 3px;
+#bold-text {
+    font-weight: bolder;
 }
-/* Markdown容器样式 */
+
+.buttons {
+    display: flex;
+    gap: 10px; /* 使用 gap 属性代替 margin 左右设置，使代码更简洁 */
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50; /* 提供一种鲜明的颜色使按钮更显眼 */
+    color: #fff;
+}
+
+button:disabled {
+    background-color: #ccc; /* 设置灰色背景 */
+    color: #888; /* 设置淡灰色文本 */
+    cursor: not-allowed; /* 设置不允许的光标样式 */
+}
+
 .markdown-container {
-    border: 1px solid black;
-    padding: 15px;
-    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
     height: 70%;
     width: 70%;
     max-height: 60%;
     max-width: 70%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
