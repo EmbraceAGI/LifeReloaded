@@ -1,6 +1,12 @@
 async function getBackground() {
     let resultParagraph = document.getElementById("markdownArea");
     var md = window.markdownit();
+    // disable buttons
+    const background_btn = document.querySelector('#backgroundButton');
+    const event_btn = document.querySelector('#eventButton');
+    background_btn.disabled = true;
+    event_btn.disabled = true;
+
     var cache_string = "";
     const sessionId = localStorage.getItem('session_id');
 
@@ -28,6 +34,9 @@ async function getBackground() {
         let container = document.querySelector('.markdown-container');
         container.scrollTop = container.scrollHeight;
     }
+
+    background_btn.disabled = false;
+    event_btn.disabled = false;
 }
 
 async function getEvent() {
@@ -61,6 +70,12 @@ async function getEvent() {
 }
 
 async function getLifeEvent() {
+    // disable buttons
+    const background_btn = document.querySelector('#backgroundButton');
+    const event_btn = document.querySelector('#eventButton');
+    background_btn.disabled = true;
+    event_btn.disabled = true;
+
     await isAlive()
     updatePerson()
     await getEvent()
@@ -77,6 +92,8 @@ async function getLifeEvent() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+        background_btn.disabled = false;
+        event_btn.disabled = false;
         return response.json();
     })
     .then(data => {
@@ -86,13 +103,23 @@ async function getLifeEvent() {
         var md = window.markdownit();
         resultParagraph.innerHTML = md.render(eventValue);
         generateButtons(optionValue);
+        background_btn.disabled = false;
+        event_btn.disabled = false;
     })
     .catch(error => {
         console.log('There was a problem with the fetch operation:', error.message);
+        background_btn.disabled = false;
+        event_btn.disabled = false;
     });
 }
 
 async function evaluate(optionNumber) {
+    // disable buttons
+    const background_btn = document.querySelector('#backgroundButton');
+    const event_btn = document.querySelector('#eventButton');
+    background_btn.disabled = true;
+    event_btn.disabled = true;
+
     console.log("Selected option:", optionNumber);
     let resultParagraph = document.getElementById("markdownArea");
     var md = window.markdownit();
@@ -122,6 +149,9 @@ async function evaluate(optionNumber) {
         let container = document.querySelector('.markdown-container');
         container.scrollTop = container.scrollHeight
     }
+
+    background_btn.disabled = false;
+    event_btn.disabled = false;
 }
 
 window.onload = function() {
