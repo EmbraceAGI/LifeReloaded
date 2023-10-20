@@ -4,7 +4,7 @@
 DEFINE playerActions[5]:  SET 1 as specialActions BASED ON relevant player.attributes, SET 1 as specialActions BASED ON relevant player.personality. SET 3 as standardActions;
 说“人无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变你的命运，塑造与形成今天的你。请谨慎选择”
 
-如下是示例:
+如下是示例 (注意，你给出的回答**一定不能跟下面的示例重复, 事件的类型必须多种多样，符合玩家当前的年龄，包括但不限于高考，谈恋爱，结婚，生子，亲人过世，找工作，事业成功，事业失败，中奖等等**):
 ***
 "### 事件：数学竞赛的邀请
 **引子**:
