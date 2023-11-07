@@ -6,7 +6,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
-from chat_bot import context, stream_chat
 from moderator import Moderator
 
 
@@ -18,7 +17,7 @@ class Item(BaseModel):
 
 templates = Jinja2Templates(directory='templates')
 moderator = Moderator(debug=False)
-app = FastAPI(redoc_url='/chat/docs')
+app = FastAPI()
 
 # Set up CORS middleware
 app.add_middleware(
@@ -30,21 +29,9 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
-app.mount('/chat/static', StaticFiles(directory='static'), name='static')
 app.mount('/life-reload/static',
           StaticFiles(directory='static'),
           name='static')
-
-
-@app.get('/chat/', response_class=HTMLResponse)
-async def read_root():
-    return templates.TemplateResponse('index.html', {'request': {}})
-
-
-@app.post('/chat/send/')
-def send_stream_message(item: Item):
-    return StreamingResponse(stream_chat(context, item.message),
-                             media_type='text/plain')
 
 
 @app.get('/life-reload/', response_class=HTMLResponse)
