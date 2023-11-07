@@ -18,8 +18,8 @@ class Chat:
         )
 
         api_key, org_id = sk.openai_settings_from_dot_env()
-        self.oai_chat_service = OpenAIChatCompletion('gpt-3.5-turbo', api_key,
-                                                     org_id)
+        self.oai_chat_service = OpenAIChatCompletion('gpt-3.5-turbo-16k',
+                                                     api_key, org_id)
 
     def __call__(self, chat_list: List):
         return self.chat(chat_list)

@@ -11,9 +11,10 @@ from prompts import BACKGROUND, EVAL, EVENTS, RULES
 class Moderator:
     def __init__(self, expiration=1800, debug=False) -> None:
         self.redis = Database(time_out=expiration, debug=debug)
-        self.chat = Chat(max_tokens=1500, debug=debug)
+        self.chat = Chat(max_tokens=4000, debug=debug)
         self.expiration = expiration
         self.option_indicator = r'\n\d+\. '
+        self.person = Person()
 
     def init_player(self, session_id):
         person = Person()
@@ -35,10 +36,10 @@ class Moderator:
 
     async def generate_events(self, session_id):
         data_dict = self.redis.fetch(session_id)
-
+        event_type = self.person.get_event_by_age(data_dict['person']['年龄'])
         chat_list = [
             RULES, EVENTS, ('user', data_dict['background']),
-            ('user', str(data_dict['person']))
+            ('user', str(data_dict['person'])), ('user', event_type)
         ]
         chat_stream = self.chat(chat_list)
         context = ''
@@ -56,12 +57,16 @@ class Moderator:
     async def evaluate_selection(self, session_id, selection: int):
         data_dict = self.redis.fetch(session_id)
         assert selection > 0 and selection <= 5
+        # format input
+        selection = f'### 你的选择:\n**{selection}**'
+        options = data_dict['events'][-1]['option']
+        options = f'### 选项:\n{options}'
+        person = str(data_dict['person'])
+        person = f'### 你的基础信息：\n{person}'
 
         chat_list = [
-            RULES, EVAL, ('user', str(data_dict['person'])),
-            ('user', data_dict['events'][-1]['event']),
-            ('user', data_dict['events'][-1]['option']),
-            ('user', str(selection))
+            RULES, EVAL, ('user', data_dict['events'][-1]['event']),
+            ('user', person), ('user', options), ('user', selection)
         ]
         chat_stream = self.chat(chat_list)
         context = ''
@@ -70,16 +75,39 @@ class Moderator:
             yield text
         data_dict['events'][-1]['result'] = context
 
-        # update age and personality
+        # update age
         added_age = random.randint(5, 10)
         data_dict['person']['年龄'] += added_age
-        # TODO parse the 属性
-        self.redis.update(session_id, data_dict)
+        # update attribute
+        self.parse_eval(session_id, data_dict, context)
 
     def parse_events(self, event: str):
         start = re.search(self.option_indicator, event).start() + 1
         event, options = event[:start], event[start:]
         return event, options
+
+    def parse_eval(self, session_id, data_dict: dict, results: str):
+        begin_id = results.find('属性')
+        results = results[begin_id:]
+        matches = re.search(r'\{(.+?)\}', results)
+        if not matches:
+            return 'No matches found.'
+
+        content = matches.group(1)
+        key_value_pairs = content.split(',')
+        result_dict = {}
+        for pair in key_value_pairs:
+            key, value = pair.split(':')
+            key = key.strip().replace("'", '')
+            value = int(value.strip())
+            # max threshold
+            value = 10 if value >= 10 else value
+            # min threshold
+            value = 0 if value <= 0 else value
+            result_dict[key] = value
+        data_dict['person']['属性'] = result_dict
+        # update person attribute
+        self.redis.update(session_id, data_dict)
 
     def is_alive(self, session_id) -> bool:
         data_dict = self.redis.fetch(session_id)

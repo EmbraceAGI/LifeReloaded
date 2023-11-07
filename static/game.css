@@ -49,6 +49,8 @@ body {
 #option-container button {
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
     background-color: #4b9ae9;
     font-size: 14px;
 }
@@ -68,7 +70,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4CAF50; /* 提供一种鲜明的颜色使按钮更显眼 */
+    background-color: #4b9ae9; /* 提供一种鲜明的颜色使按钮更显眼 */
     color: #fff;
 }
 
