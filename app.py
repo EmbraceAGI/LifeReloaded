@@ -111,6 +111,7 @@ if __name__ == '__main__':
     uvicorn.run('app:app',
                 reload=True,
                 port=5001,
+                log_config='log_cfg.json',
                 host='0.0.0.0',
                 ssl_keyfile='./key.pem',
                 ssl_certfile='./cert.pem')
