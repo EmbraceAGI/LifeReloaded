@@ -134,8 +134,8 @@ class Person:
 
         # Randomly select an event from the corresponding life stage
         event = random.choice(self.STAGES[stage])
-        event_prompt = '###人生事件类型: \n' \
-            f'**{event}**'
+        event_prompt = '### 人生事件类型: \n' \
+            f'\t **{event}**'
         return event_prompt
 
     def __str__(self) -> str:
