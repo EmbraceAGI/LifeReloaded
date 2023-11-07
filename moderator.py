@@ -39,8 +39,7 @@ class Moderator:
         event_type = self.person.get_event_by_age(data_dict['person']['年龄'])
         chat_list = [
             RULES, EVENTS, ('user', data_dict['background']),
-            ('user', str(data_dict['person'])),
-            ('user', event_type)
+            ('user', str(data_dict['person'])), ('user', event_type)
         ]
         chat_stream = self.chat(chat_list)
         context = ''
@@ -66,11 +65,8 @@ class Moderator:
         person = f'### 你的基础信息：\n{person}'
 
         chat_list = [
-            RULES, EVAL,
-            ('user', data_dict['events'][-1]['event']),
-            ('user', person),
-            ('user', options),
-            ('user', selection)
+            RULES, EVAL, ('user', data_dict['events'][-1]['event']),
+            ('user', person), ('user', options), ('user', selection)
         ]
         chat_stream = self.chat(chat_list)
         context = ''
@@ -89,13 +85,13 @@ class Moderator:
         start = re.search(self.option_indicator, event).start() + 1
         event, options = event[:start], event[start:]
         return event, options
-    
+
     def parse_eval(self, session_id, data_dict: dict, results: str):
         begin_id = results.find('属性')
         results = results[begin_id:]
         matches = re.search(r'\{(.+?)\}', results)
         if not matches:
-            return "No matches found."
+            return 'No matches found.'
 
         content = matches.group(1)
         key_value_pairs = content.split(',')
