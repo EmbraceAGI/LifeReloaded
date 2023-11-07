@@ -69,6 +69,44 @@ def initialize():
 
 
 class Person:
+
+    STAGES = {
+        'Childhood (5-12)': [
+            'Individual Growth', 'Initial Education', 'Family Role',
+            'Social Basics', 'Gender Cognition', 'Moral Concepts',
+            'Cultural Exposure', 'Safety and Risks',
+            'Entertainment and Interests', 'Mental Health'
+        ],
+        'Adolescence (13-19)': [
+            'Identity Formation', 'Education and Career Planning',
+            'Love and Sex Education', 'Friends and Social Circles',
+            'Family Changes', 'Life Skills',
+            'Social Responsibility and Citizenship', 'Mental Health',
+            'Healthy Living and Habits', 'Money Management'
+        ],
+        'Early Adulthood (20-39)': [
+            'Career Choice and Development', 'Partner and Marriage',
+            'Social Network', 'Financial Independence', 'Self-realization',
+            'Work-Life Balance', 'Social and Cultural Engagement',
+            'Family Expansion', 'Global Awareness', 'Health and Lifestyle'
+        ],
+        'Middle Age (40-59)': [
+            'Career Stability or Transition',
+            'Children’s Education and Growth', 'Financial Planning',
+            'Family Dynamics', 'Quality of Life',
+            'Social Status and Influence', 'Health Management',
+            'Psychological Adjustment', 'Social Maintenance',
+            'Legacy and Heritage'
+        ],
+        'Old Age (60-90)': [
+            'Retirement Life', 'Health and Medical', 'Family and Social',
+            'Financial Security', 'Mental Health',
+            'Personal Interests and Hobbies', 'Culture and Education',
+            'Social Participation', 'Life Reflection',
+            'Spirituality and Belief'
+        ]
+    }
+
     def __init__(self) -> None:
         city, age, gender, mbti_type, attribute = initialize()
         self.city = city
@@ -76,6 +114,29 @@ class Person:
         self.gender = gender
         self.mbti_type = mbti_type
         self.attribute = attribute
+
+    def get_event_by_age(self, age: int = None) -> str:
+        if age is None:
+            age = self.age
+        # Determine the life stage based on the age
+        if 5 <= age <= 12:
+            stage = 'Childhood (5-12)'
+        elif 13 <= age <= 19:
+            stage = 'Adolescence (13-19)'
+        elif 20 <= age <= 39:
+            stage = 'Early Adulthood (20-39)'
+        elif 40 <= age <= 59:
+            stage = 'Middle Age (40-59)'
+        elif 60 <= age <= 90:
+            stage = 'Old Age (60-90)'
+        else:
+            return 'Age out of range'
+
+        # Randomly select an event from the corresponding life stage
+        event = random.choice(self.STAGES[stage])
+        event_prompt = '###人生事件类型: \n' \
+            f'**{event}**'
+        return event_prompt
 
     def __str__(self) -> str:
         person_prompt = {

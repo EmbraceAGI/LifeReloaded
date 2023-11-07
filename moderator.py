@@ -11,9 +11,10 @@ from prompts import BACKGROUND, EVAL, EVENTS, RULES
 class Moderator:
     def __init__(self, expiration=1800, debug=False) -> None:
         self.redis = Database(time_out=expiration, debug=debug)
-        self.chat = Chat(max_tokens=1500, debug=debug)
+        self.chat = Chat(max_tokens=4000, debug=debug)
         self.expiration = expiration
         self.option_indicator = r'\n\d+\. '
+        self.person = Person()
 
     def init_player(self, session_id):
         person = Person()
@@ -38,7 +39,8 @@ class Moderator:
 
         chat_list = [
             RULES, EVENTS, ('user', data_dict['background']),
-            ('user', str(data_dict['person']))
+            ('user', str(data_dict['person'])),
+            ('user', self.person.get_event_by_age(data_dict['person']['年龄']))
         ]
         chat_stream = self.chat(chat_list)
         context = ''
