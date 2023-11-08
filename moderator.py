@@ -5,7 +5,7 @@ import time
 import uuid
 
 from core import Chat, Database, Person
-from prompts import BACKGROUND, EVAL, EVENTS, RULES
+from prompts import BACKGROUND, EPITAPH, EVAL, EVENTS, RULES, SUM
 
 
 class Moderator:
@@ -75,11 +75,43 @@ class Moderator:
             yield text
         data_dict['events'][-1]['result'] = context
 
+        # summarize events
+        chat_list = [
+            SUM, ('user', data_dict['events'][-1]['event']), ('user', person),
+            ('user', options), ('user', selection), ('user', context)
+        ]
+        chat_stream = self.chat(chat_list)
+        sum_context = ''
+        async for text in chat_stream:
+            sum_context += text
+        data_dict['events'][-1]['sum'] = sum_context
+
         # update age
         added_age = random.randint(5, 10)
         data_dict['person']['年龄'] += added_age
         # update attribute
         self.parse_eval(session_id, data_dict, context)
+
+    async def generate_epitaph(self, session_id):
+        data_dict = self.redis.fetch(session_id)
+        pre_prompt = '### 你的历史事件(如果没有内容则表示当前还没有历史事件)\n***\n'
+        if 'events' in data_dict:
+            history = []
+            for event in data_dict['events']:
+                if 'sum' in event:
+                    history.append(event['sum'])
+                else:
+                    continue
+            history = '\n***\n'.join(history)
+            history = pre_prompt + history
+        else:
+            history = pre_prompt
+        chat_list = [EPITAPH, ('user', history)]
+        chat_stream = self.chat(chat_list)
+        context = ''
+        async for text in chat_stream:
+            context += text
+            yield text
 
     def parse_events(self, event: str):
         start = re.search(self.option_indicator, event).start() + 1
@@ -88,23 +120,18 @@ class Moderator:
 
     def parse_eval(self, session_id, data_dict: dict, results: str):
         begin_id = results.find('属性')
-        results = results[begin_id:]
-        matches = re.search(r'\{(.+?)\}', results)
+        results = results[begin_id:].replace("'", '')
+        pattern = r'\s*(\w+):\s*(\d+)'
+        matches = re.findall(pattern, results)
         if not matches:
-            return 'No matches found.'
+            raise ValueError(f'mis pattern in: {results}')
 
-        content = matches.group(1)
-        key_value_pairs = content.split(',')
         result_dict = {}
-        for pair in key_value_pairs:
-            key, value = pair.split(':')
-            key = key.strip().replace("'", '')
-            value = int(value.strip())
-            # max threshold
+        for attribute, value in matches:
+            value = int(value)
             value = 10 if value >= 10 else value
-            # min threshold
             value = 0 if value <= 0 else value
-            result_dict[key] = value
+            result_dict[attribute] = value
         data_dict['person']['属性'] = result_dict
         # update person attribute
         self.redis.update(session_id, data_dict)

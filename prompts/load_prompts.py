@@ -27,3 +27,9 @@ with open('./prompts/summarization.txt', 'r') as fp:
     sum_prompt = fp.readlines()
 sum_prompt = ''.join(sum_prompt)
 SUM = ('system', sum_prompt)
+
+# init epitaph
+with open('./prompts/epitaph.txt', 'r') as fp:
+    epitaph_prompt = fp.readlines()
+epitaph_prompt = ''.join(epitaph_prompt)
+EPITAPH = ('system', epitaph_prompt)

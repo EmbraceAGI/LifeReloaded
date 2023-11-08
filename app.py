@@ -87,6 +87,14 @@ async def is_alive(item: Item):
     return moderator.is_alive(session_id)
 
 
+@app.post('/life-reload/epitaph/')
+async def generate_epitaph(item: Item):
+    session_id = item.session_id
+    assert session_id is not None
+    return StreamingResponse(moderator.epitaph(session_id),
+                             media_type='text/plain')
+
+
 @app.post('/life-reload/get_person/')
 async def get_person(item: Item):
     session_id = item.session_id

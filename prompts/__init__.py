@@ -1,3 +1,3 @@
-from .load_prompts import BACKGROUND, EVAL, EVENTS, RULES, SUM
+from .load_prompts import BACKGROUND, EPITAPH, EVAL, EVENTS, RULES, SUM
 
-__all__ = ['RULES', 'BACKGROUND', 'EVENTS', 'EVAL', 'SUM']
+__all__ = ['RULES', 'BACKGROUND', 'EVENTS', 'EVAL', 'SUM', 'EPITAPH']
