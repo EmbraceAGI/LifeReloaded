@@ -163,3 +163,4 @@ cython_debug/
 .env
 *.pem
 *.idea
+test_*.py

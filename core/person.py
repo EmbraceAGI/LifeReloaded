@@ -91,9 +91,8 @@ class Person:
             'Family Expansion', 'Global Awareness', 'Health and Lifestyle'
         ],
         'Middle Age (40-59)': [
-            'Career Stability or Transition',
-            'Children’s Education and Growth', 'Financial Planning',
-            'Family Dynamics', 'Quality of Life',
+            'Career Stability or Transition', 'Children Education and Growth',
+            'Financial Planning', 'Family Dynamics', 'Quality of Life',
             'Social Status and Influence', 'Health Management',
             'Psychological Adjustment', 'Social Maintenance',
             'Legacy and Heritage'
