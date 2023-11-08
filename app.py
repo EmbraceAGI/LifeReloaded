@@ -91,7 +91,7 @@ async def is_alive(item: Item):
 async def generate_epitaph(item: Item):
     session_id = item.session_id
     assert session_id is not None
-    return StreamingResponse(moderator.epitaph(session_id),
+    return StreamingResponse(moderator.generate_epitaph(session_id),
                              media_type='text/plain')
 
 
