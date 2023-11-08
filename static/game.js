@@ -2,9 +2,49 @@ window.onload = function() {
     var beginDiv = document.querySelector('.begin');
     beginDiv.style.display = 'block';
 
+    document.getElementById('start-button').style.display = 'none';
+
     var gameDiv = document.querySelector('.game');
     gameDiv.style.display = 'none';
 
+    generateOpening();
+
+    const sessionId = localStorage.getItem('session_id');
+    console.log(sessionId);
+}
+
+function displayTextByLetter(text, container, interval, callback) {
+    let i = 0;
+    let lastTime = Date.now();
+    function nextLetter() {
+        requestAnimationFrame(() => {
+            let currentTime = Date.now();
+            if (currentTime - lastTime >= interval) {
+                if (i < text.length) {
+                    container.textContent += text.charAt(i);
+                    i++;
+                    lastTime = currentTime;
+                } else {
+                    if (callback && typeof callback === 'function') {
+                        callback();
+                    }
+                    return;
+                }
+            }
+            nextLetter();
+        });
+    }
+    nextLetter();
+}
+
+function generateOpening() {
+    // 获取要显示文本的容器
+    const textContainer = document.getElementById('opening');
+    const text = "欢迎来到《人生重启模拟器》，一个简约的世界，等待你来编织命运。在这里，每个选择都是重生的机会，每个对话都能开辟生活的新路径。用你的智慧探索无数可能，用你的决定定义未来。现在，深呼吸，按下“开始游戏”，让我们一起探索人生的无限可能吧！";
+    displayTextByLetter(text, textContainer, 50, function() { // 50ms per word
+        // 文本显示完毕后，显示开始按钮
+        document.getElementById('start-button').style.display = 'inline';
+      });
 }
 
 function beginGame() {

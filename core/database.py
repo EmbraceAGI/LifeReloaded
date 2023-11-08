@@ -19,7 +19,7 @@ except ImportError:
 
 
 class Database:
-    def __init__(self, cfg_path='.env', time_out=1800, debug=False) -> None:
+    def __init__(self, cfg_path='.env', time_out=3600, debug=False) -> None:
         config = dotenv_values(cfg_path)
         self.time_out = time_out
         self.debug = debug

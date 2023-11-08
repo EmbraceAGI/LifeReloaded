@@ -1,9 +1,25 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #202020; /* 更柔和的深灰色作为背景 */
-    color: #f0f0f0; /* 微亮的白色字体 */
+html, body {
+    min-height: 100%;
     margin: 0;
     padding: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; /* 新增 */
+  }
+
+.content {
+    padding-bottom: 70px;
+    flex: 1;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #202020;
+    color: #f0f0f0;
+    display: flex; /* 新增 */
+    flex-direction: column; /* 新增 */
+    min-height: 100vh; /* 更改为 100vh */
 }
 
 .begin {
@@ -18,9 +34,26 @@ body {
     margin-bottom: 30px; /* Space before the start button */
 }
 
+#opening {
+    color: #f0f0f0;
+    font-size: 20px;
+    white-space: pre-wrap; /* 保留空白符和换行符 */
+    word-wrap: break-word; /* 在需要的时候进行单词换行 */
+    text-align: center; /* 使文本居中 */
+    padding: 20px;
+    margin-top: 50px; /* 或者根据需要调整 */
+    max-width: 80%; /* 容器最大宽度 */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #282828; /* 与之前的风格保持一致 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* 细微的阴影 */
+}
+
 #start-button {
     display: inline-block;
     width: 200px;
+    margin-top: 50px;
     padding: 10px 20px;
     font-size: 24px;
     background-color: #f0f0f0; /* 按钮背景色为微亮的白色 */
@@ -127,4 +160,15 @@ button:disabled {
     background-color: #282828; /* 背景色与卡片背景一致 */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.site-footer {
+    text-align: center;
+    background-color: #f2f2f2;
+    color: #333;
+    border-top: 1px solid #e1e1e1;
+    font-size: 14px;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
 }
