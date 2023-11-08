@@ -9,7 +9,7 @@ html, body {
   }
 
 .content {
-    padding-bottom: 70px;
+    /* padding-bottom: 70px; */
     flex: 1;
 }
 
@@ -108,7 +108,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 #option-container button {
