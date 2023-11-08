@@ -19,6 +19,12 @@
 
 <body>
 
+<div class="begin">
+    <div id="game-title">人生重启</div>
+    <button id="start-button" onclick="beginGame()">开始游戏</a>
+</div>
+
+<div class="game" style="display: none;">
 <div class="centered">
     <div class="card">
         <div class="card-title">个人信息</div>
@@ -42,10 +48,11 @@
     </div>
 
     <div class="buttons">
-        <button class="button" id="backgroundButton" onclick="getBackground()">开始游戏</button>
+        <button class="button" id="backgroundButton" onclick="getBackground()">重新开始</button>
         <button class="button" id="eventButton" onclick="getLifeEvent()">继续游戏</button>
     </div>
 
+</div>
 </div>
 
 </body>

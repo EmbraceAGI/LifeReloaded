@@ -6,6 +6,37 @@ body {
     padding: 0;
 }
 
+.begin {
+    /* background: linear-gradient(to right, #e6e9f0, #eef1f5); */
+    font-family: 'Helvetica Neue', sans-serif;
+    text-align: center;
+    padding-top: 100px; /* Adjusted to vertically center the content */
+}
+
+#game-title {
+    color: #333;
+    font-size: 48px;
+    margin-bottom: 30px; /* Space before the start button */
+}
+
+#start-button {
+    display: inline-block;
+    width: 200px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: #556;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Remove underline from links */
+}
+
+#start-button:hover {
+    background-color: #667;
+}
+
 .card {
     display: none;
     flex-wrap: wrap;
@@ -51,7 +82,7 @@ body {
     margin-bottom: 5px;
     margin-left: 1px;
     margin-right: 1px;
-    background-color: #4b9ae9;
+    background-color: #556;
     font-size: 14px;
 }
 
@@ -70,7 +101,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4b9ae9; /* 提供一种鲜明的颜色使按钮更显眼 */
+    background-color: #556; /* 提供一种鲜明的颜色使按钮更显眼 */
     color: #fff;
 }
 
