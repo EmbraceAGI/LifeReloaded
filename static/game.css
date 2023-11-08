@@ -117,12 +117,12 @@ button:disabled {
 
 .markdown-container {
     border: 1px solid #383838;
-    padding: 20px;
+    padding: 15px;
     margin-bottom: 10px;
     height: 70%;
-    width: 70%;
+    width: 80%;
     max-height: 50%;
-    max-width: 70%;
+    max-width: 80%;
     overflow-y: auto;
     background-color: #282828; /* 背景色与卡片背景一致 */
     border-radius: 10px;
