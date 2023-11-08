@@ -16,8 +16,14 @@ with open('./prompts/events.txt', 'r') as fp:
 events_prompt = ''.join(events_prompt)
 EVENTS = ('system', events_prompt)
 
-# init events
+# init evaluation
 with open('./prompts/evaluation.txt', 'r') as fp:
     eval_prompt = fp.readlines()
 eval_prompt = ''.join(eval_prompt)
 EVAL = ('system', eval_prompt)
+
+# init summarization
+with open('./prompts/summarization.txt', 'r') as fp:
+    sum_prompt = fp.readlines()
+sum_prompt = ''.join(sum_prompt)
+SUM = ('system', sum_prompt)
