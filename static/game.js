@@ -41,7 +41,7 @@ function generateOpening() {
     // 获取要显示文本的容器
     const textContainer = document.getElementById('opening');
     const text = "欢迎来到《人生重启模拟器》，一个简约的世界，等待你来编织命运。在这里，每个选择都是重生的机会，每个对话都能开辟生活的新路径。用你的智慧探索无数可能，用你的决定定义未来。现在，深呼吸，按下“开始游戏”，让我们一起探索人生的无限可能吧！";
-    displayTextByLetter(text, textContainer, 50, function() { // 50ms per word
+    displayTextByLetter(text, textContainer, 25, function() { // 25ms per word
         // 文本显示完毕后，显示开始按钮
         document.getElementById('start-button').style.display = 'inline';
       });
@@ -220,6 +220,14 @@ async function evaluate(optionNumber) {
     const event_btn = document.querySelector('#eventButton');
     background_btn.disabled = true;
     event_btn.disabled = true;
+
+    // 获取所有按钮
+    var buttons = document.querySelectorAll('#option-container button');
+
+    // 遍历每个按钮并将其设置为不可点击
+    buttons.forEach(function(button) {
+        button.disabled = true;
+    });
 
     let resultParagraph = document.getElementById("markdownArea");
     var md = window.markdownit();

@@ -163,4 +163,5 @@ cython_debug/
 .env
 *.pem
 *.idea
+.vscode
 test_*.py
