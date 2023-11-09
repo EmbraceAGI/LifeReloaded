@@ -25,7 +25,7 @@ body {
 .begin {
     font-family: 'Helvetica Neue', sans-serif;
     text-align: center;
-    padding-top: 100px; /* Vertically center the content */
+    padding-top: 50px; /* Vertically center the content */
 }
 
 #game-title {
