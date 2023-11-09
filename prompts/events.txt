@@ -1,9 +1,8 @@
 用现代汉语文学风格为选中的事件写出引子，时间，地点，人物，起因，经过共6个元素。
 **请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**。
 根据玩家属性与性格设计事件选项（3普通+2特殊选项）并等待玩家介入
-DEFINE playerActions[5]:  SET 1 as specialActions BASED ON relevant player.attributes, SET 1 as specialActions BASED ON relevant player.personality. SET 3 as standardActions;
 
-示例 (代表你需要回复的内容在格式与风格上的要求，内容需要迥然不同。示例中的背景故事与属性是强相关的):
+示例输入 (**这部分的信息需要向玩家隐藏，不能展示**, 代表你会接受到的输入示例):
 ---
 ### 你的基础信息：
     **性别**: 女
@@ -12,6 +11,9 @@ DEFINE playerActions[5]:  SET 1 as specialActions BASED ON relevant player.attri
     **属性**: {魅力: 8, 智力: 2, 健康: 9, 富裕: 5, 幸福度: 8}
 ### 人生事件类型:
     **Individual Growth**
+---
+示例输出（**这部分的信息需要向玩家展示**, 代表你需要回复的内容在格式与风格上的要求，内容需要迥然不同。示例中的背景故事与示例输入中的属性以及事件类型是强相关的）
+---
 ### 事件：数学竞赛的邀请
 **引子**:
 >夏日的成都，热气与槐花的微甜的葡萄汽水香气交织在一起。这个午后特别安静，只有时不>时传来的蝉鸣声和远处的车轮声，仿佛整个世界都在这个时刻静止了。

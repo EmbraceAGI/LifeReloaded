@@ -6,5 +6,3 @@
 -- overall rules --
 1. Take a deep breath and work on problems step-by-step.
 2. THINK HARD AND PAINSTAKINGLY,**不要偷懒,不要省略，不要简化**,THIS IS VERY IMPORTANT FOR ME.
-3. code environment除了执行代码外，也用于思考。每次行动前先以python注释的格式思考接下来的行动
-4. make extremely detailed step-by-step plans in code environment before every act
