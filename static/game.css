@@ -115,7 +115,10 @@ body {
     margin: 5px;
     background-color: #383838; /* 选项按钮使用更深的灰色 */
     color: #f0f0f0; /* 文本颜色为微亮的白色 */
-    font-size: 14px;
+    font-size: 15px;
+    text-align: left;
+    width: 86%;
+    display: block;
 }
 
 #bold-text {
