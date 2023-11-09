@@ -9,7 +9,7 @@ html, body {
   }
 
 .content {
-    padding-bottom: 70px;
+    /* padding-bottom: 70px; */
     flex: 1;
 }
 
@@ -108,7 +108,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 #option-container button {
@@ -170,5 +170,5 @@ button:disabled {
     font-size: 14px;
     bottom: 0;
     width: 100%;
-    height: 70px;
+    height: 35px;
 }
