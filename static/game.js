@@ -9,9 +9,23 @@ class DomUtils {
         if (element) element.style.display = 'none';
     }
 
-    static setTextContent(id, text) {
+    static setTextContent(id, newText) {
         const element = document.getElementById(id);
-        if (element) element.textContent = text;
+        if (element) {
+            // check whether the content has changed
+            const oldText = element.textContent.toString().trim();
+            const trimmedNewText = newText.toString().trim();
+
+            if (oldText !== trimmedNewText) {
+                element.textContent = trimmedNewText;
+                element.textContent = newText;
+                element.classList.add('updated');
+
+                setTimeout(() => {
+                    element.classList.remove('updated');
+                }, 3000);  // recover after 3s
+            }
+        }
     }
 
     static createElement(type, properties = {}) {
@@ -136,19 +150,18 @@ class Game {
         DomUtils.hideElement('#start-button');
         DomUtils.hideElement('.game');
         this.generateOpening();
-        await this.initPlayer();
     }
 
     async initPlayer() {
         try {
-            const data = await ApiService.fetchJSON('/life-reload/init/', {
+            await ApiService.fetchJSON('/life-reload/init/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ session_id: this.sessionId })
             });
-            this.updatePlayerData(data);
+            await this.updatePlayerData();
         } catch (error) {
             console.error('Error initializing player:', error);
         }
@@ -176,6 +189,7 @@ class Game {
     async getBackground() {
         DomUtils.disableButton('#backgroundButton');
         DomUtils.disableButton('#eventButton');
+        await this.initPlayer();
         try {
             await ApiService.fetchStream('/life-reload/begin/', {
                 method: 'POST',
@@ -244,6 +258,7 @@ class Game {
     }
 
     async getEpoch() {
+        this.updatePlayerData();
         DomUtils.disableButton('#backgroundButton');
         DomUtils.disableButton('#eventButton');
         try {
@@ -304,12 +319,29 @@ class Game {
         });
     }
 
-    updatePlayerData(data) {
-        if (data) {
-            DomUtils.setTextContent('gender', data["性别"]);
-            DomUtils.setTextContent('city', data["城市"]);
-            // TODO ... more data fields
-            DomUtils.showElement('.card', 'flex');
+    async updatePlayerData() {
+        try {
+            const data = await ApiService.fetchJSON('/life-reload/get_person/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            });
+            if (data) {
+                DomUtils.setTextContent('gender', data["性别"]);
+                DomUtils.setTextContent('city', data["城市"]);
+                DomUtils.setTextContent('age', data["年龄"]);
+                DomUtils.setTextContent('personality', data["性格"]);
+                DomUtils.setTextContent('charm', data["属性"]["魅力"]);
+                DomUtils.setTextContent('intelligence', data["属性"]["智力"]);
+                DomUtils.setTextContent('health', data["属性"]["健康"]);
+                DomUtils.setTextContent('wealth', data["属性"]["富裕"]);
+                DomUtils.setTextContent('happiness', data["属性"]["幸福度"]);
+                DomUtils.showElement('.card', 'flex');
+            }
+        } catch (error) {
+            console.error('Error update player:', error);
         }
     }
 
