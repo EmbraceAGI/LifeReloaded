@@ -385,6 +385,26 @@ class Game {
 }
 
 window.onload = function() {
+    checkAndUpdateCSS();
     const game = new Game();
     game.init();
+}
+
+async function checkAndUpdateCSS() {
+    const url = '/life-reload/static/game.css'
+    const cssLink = document.querySelector(`link[href="${url}"]`);
+    if (!cssLink) return;
+
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        const newLastModified = response.headers.get('Last-Modified');
+        const currentLastModified = cssLink.getAttribute('data-last-modified');
+
+        if (newLastModified !== currentLastModified) {
+            cssLink.href = `${url}?t=${new Date().getTime()}`;
+            cssLink.setAttribute('data-last-modified', newLastModified);
+        }
+    } catch (error) {
+        console.error('Error checking CSS update:', error);
+    }
 }
