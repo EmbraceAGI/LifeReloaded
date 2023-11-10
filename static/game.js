@@ -1,384 +1,358 @@
-window.onload = function() {
-    var beginDiv = document.querySelector('.begin');
-    beginDiv.style.display = 'block';
+class DomUtils {
+    static showElement(selector, displayStyle = 'block') {
+        const element = document.querySelector(selector);
+        if (element) element.style.display = displayStyle;
+    }
 
-    document.getElementById('start-button').style.display = 'none';
+    static hideElement(selector) {
+        const element = document.querySelector(selector);
+        if (element) element.style.display = 'none';
+    }
 
-    var gameDiv = document.querySelector('.game');
-    gameDiv.style.display = 'none';
+    static setTextContent(id, text) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = text;
+    }
 
-    generateOpening();
+    static createElement(type, properties = {}) {
+        const element = document.createElement(type);
+        Object.keys(properties).forEach(key => {
+            element[key] = properties[key];
+        });
+        return element;
+    }
 
-    const sessionId = localStorage.getItem('session_id');
-    console.log(sessionId);
+    static disableButton(selector) {
+        const button = document.querySelector(selector);
+        if (button) {
+            button.disabled = true;
+        }
+    }
+
+    static enableButton(selector) {
+        const button = document.querySelector(selector);
+        if (button) {
+            button.disabled = false;
+        }
+    }
+
+    static disableButtonsInContainer(containerSelector) {
+        const buttons = document.querySelectorAll(`${containerSelector} button`);
+        buttons.forEach(button => {
+            button.disabled = true;
+        });
+    }
+
+    static enableButtonsInContainer(containerSelector) {
+        const buttons = document.querySelectorAll(`${containerSelector} button`);
+        buttons.forEach(button => {
+            button.disabled = false;
+        });
+    }
 }
 
-function displayTextByLetter(text, container, interval, callback) {
-    let i = 0;
-    let lastTime = Date.now();
-    function nextLetter() {
-        requestAnimationFrame(() => {
-            let currentTime = Date.now();
-            if (currentTime - lastTime >= interval) {
-                if (i < text.length) {
-                    container.textContent += text.charAt(i);
-                    i++;
-                    lastTime = currentTime;
-                } else {
-                    if (callback && typeof callback === 'function') {
-                        callback();
-                    }
-                    return;
+class ApiService {
+    static async fetchJSON(url, options = {}) {
+        try {
+            const response = await fetch(url, options);
+            if (response.ok) {
+                return await response.json();
+            } else {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+        } catch (error) {
+            console.error(`Could not fetch ${url}: ${error}`);
+            throw error;
+        }
+    }
+
+    static async fetchStream(url, options = {}, callback) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
+            const reader = response.body.getReader();
+            let cache_string = "";
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) {
+                    break;
+                }
+                const text = new TextDecoder().decode(value);
+                cache_string += text;
+                if (callback && typeof callback === 'function') {
+                    callback(cache_string);
                 }
             }
-            nextLetter();
+        } catch (error) {
+            console.error(`Could not fetch ${url}: ${error}`);
+            throw error;
+        }
+    }
+}
+
+class TextDisplay {
+    constructor(text, container, interval) {
+        this.text = text;
+        this.container = container;
+        this.interval = interval;
+        this.currentIndex = 0;
+    }
+
+    display(callback) {
+        const nextLetter = () => {
+            if (this.currentIndex < this.text.length) {
+                this.container.textContent += this.text.charAt(this.currentIndex);
+                this.currentIndex++;
+                setTimeout(nextLetter, this.interval);
+            } else if (typeof callback === 'function') {
+                callback();
+            }
+        };
+        nextLetter();
+    }
+}
+
+class Game {
+    constructor() {
+        this.sessionId = localStorage.getItem('session_id');
+        console.log(this.sessionId)
+        this.md = window.markdownit();
+        this.backgroundButton = document.querySelector('#backgroundButton');
+        this.backgroundButton.addEventListener('click', () => {
+            this.getBackground();
+        });
+        this.eventButton = document.querySelector('#eventButton');
+        this.eventButton.addEventListener('click', () => {
+            this.getEpoch();
         });
     }
-    nextLetter();
-}
 
-function generateOpening() {
-    // 获取要显示文本的容器
-    const textContainer = document.getElementById('opening');
-    const text = "欢迎来到《人生重启模拟器》，一个简约的世界，等待你来编织命运。在这里，每个选择都是重生的机会，每个对话都能开辟生活的新路径。用你的智慧探索无数可能，用你的决定定义未来。现在，深呼吸，按下“开始游戏”，让我们一起探索人生的无限可能吧！";
-    displayTextByLetter(text, textContainer, 25, function() { // 25ms per word
-        // 文本显示完毕后，显示开始按钮
-        document.getElementById('start-button').style.display = 'inline';
-      });
-}
+    async init() {
+        DomUtils.showElement('.begin');
+        DomUtils.hideElement('#start-button');
+        DomUtils.hideElement('.game');
+        this.generateOpening();
+        await this.initPlayer();
+    }
 
-function beginGame() {
-    var beginDiv = document.querySelector('.begin');
-    beginDiv.style.display = 'none';
+    async initPlayer() {
+        try {
+            const data = await ApiService.fetchJSON('/life-reload/init/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            });
+            this.updatePlayerData(data);
+        } catch (error) {
+            console.error('Error initializing player:', error);
+        }
+    }
 
-    var gameDiv = document.querySelector('.game');
-    gameDiv.style.display = 'block';
+    generateOpening() {
+        const textContainer = document.getElementById('opening');
+        const text = "欢迎来到《人生重启模拟器》，一个简约的世界，等待你来编织命运。在这里，每个选择都是重生的机会，每个对话都能开辟生活的新路径。用你的智慧探索无数可能，用你的决定定义未来。现在，深呼吸，按下“开始游戏”，让我们一起探索人生的无限可能吧！";
+        const textDisplay = new TextDisplay(text, textContainer, 25);
+        textDisplay.display(() => {
+            DomUtils.showElement('#start-button', 'inline');
+            const startButton = document.getElementById('start-button');
+            startButton.addEventListener('click', () => {
+                this.beginGame();
+            });
+        });
+    }
 
-    getBackground()
-}
+    beginGame() {
+        DomUtils.hideElement('.begin');
+        DomUtils.showElement('.game');
+        this.getBackground();
+    }
 
-function initPlayer() {
-    const sessionId = localStorage.getItem('session_id');
-    fetch('/life-reload/init/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data && data["性别"]) {
-                // 插入数据到HTML中
-                document.getElementById('gender').textContent = data["性别"];
-                document.getElementById('city').textContent = data["城市"];
-                document.getElementById('age').textContent = data["年龄"];
-                document.getElementById('personality').textContent = data["性格"];
-                document.getElementById('charm').textContent = data["属性"]["魅力"];
-                document.getElementById('intelligence').textContent = data["属性"]["智力"];
-                document.getElementById('health').textContent = data["属性"]["健康"];
-                document.getElementById('wealth').textContent = data["属性"]["富裕"];
-                document.getElementById('happiness').textContent = data["属性"]["幸福度"];
+    async getBackground() {
+        DomUtils.disableButton('#backgroundButton');
+        DomUtils.disableButton('#eventButton');
+        try {
+            await ApiService.fetchStream('/life-reload/begin/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            }, this.displayMarkdown.bind(this));
+        } catch (error) {
+            console.error('Error fetching background:', error);
+        }
+        DomUtils.enableButton('#backgroundButton');
+        DomUtils.enableButton('#eventButton');
+    }
 
-                // 显示卡片
-                document.querySelector('.card').style.display = 'flex';
+    async getEvent() {
+        try {
+            await ApiService.fetchStream('/life-reload/event/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            }, this.displayMarkdown.bind(this));
+        } catch (error) {
+            console.error('Error fetching event:', error);
+        }
+    }
+
+    async getEnding() {
+        try {
+            await ApiService.fetchStream('/life-reload/ending/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            }, this.displayMarkdown.bind(this));
+        } catch (error) {
+            console.error('Error fetching ending:', error);
+        }
+    }
+
+    async getEval(optionNumber) {
+        DomUtils.disableButton('#backgroundButton');
+        DomUtils.disableButton('#eventButton');
+        DomUtils.disableButtonsInContainer('#option-container');
+
+        try {
+            await ApiService.fetchStream('/life-reload/evaluation/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    session_id: this.sessionId,
+                    selection: optionNumber
+                })
+            }, this.displayMarkdown.bind(this));
+        } catch (error) {
+            console.error('Error during evaluation:', error);
+        } finally {
+            DomUtils.enableButton('#backgroundButton');
+            DomUtils.enableButton('#eventButton');
+        }
+    }
+
+    async getEpoch() {
+        DomUtils.disableButton('#backgroundButton');
+        DomUtils.disableButton('#eventButton');
+        try {
+            const isAlive = await this.checkIfAlive();
+            if (!isAlive) {
+                await this.getEnding();
+                DomUtils.enableButton('#backgroundButton');
+                return;
             }
+
+            await this.getEvent();
+            // parse event content and option content
+            this.getParsedEvent();
+
+        } catch (error) {
+            console.error('Error in life event:', error);
+        }
+        DomUtils.enableButton('#backgroundButton');
+        DomUtils.enableButton('#eventButton');
+    }
+
+    async checkIfAlive() {
+        try {
+            const data = await ApiService.fetchJSON('/life-reload/is_alive/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ session_id: this.sessionId })
+            });
+            return data;
+        } catch (error) {
+            console.error('Error checking if alive:', error);
+            return false;
+        }
+    }
+
+    getParsedEvent() {
+        ApiService.fetchJSON('/life-reload/parsed_event/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ session_id: this.sessionId })
+        })
+        .then(data => {
+            let eventValue = data.event;
+            let optionValue = data.option;
+            this.displayMarkdown(eventValue);
+            this.generateButtons(optionValue);
         })
         .catch(error => {
-            console.error('Error fetching the init API:', error);
-        });
-}
-
-async function getBackground() {
-    initPlayer()
-
-    let resultParagraph = document.getElementById("markdownArea");
-    var md = window.markdownit();
-    // disable buttons
-    const background_btn = document.querySelector('#backgroundButton');
-    const event_btn = document.querySelector('#eventButton');
-    background_btn.disabled = true;
-    event_btn.disabled = true;
-
-    var cache_string = "";
-    const sessionId = localStorage.getItem('session_id');
-
-    const response = await fetch('/life-reload/begin/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
+            console.error('There was a problem with the fetch operation:', error);
         })
-    });
-    const reader = response.body.getReader();
+        .finally(() => {
+            DomUtils.enableButton('#backgroundButton');
+            DomUtils.enableButton('#eventButton');
+        });
+    }
 
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) {
-            break;
+    updatePlayerData(data) {
+        if (data) {
+            DomUtils.setTextContent('gender', data["性别"]);
+            DomUtils.setTextContent('city', data["城市"]);
+            // TODO ... more data fields
+            DomUtils.showElement('.card', 'flex');
         }
-        const text = new TextDecoder().decode(value);
-        cache_string += text
-        resultParagraph.innerHTML = md.render(cache_string);
+    }
+
+    displayMarkdown(markdownText) {
+        const resultParagraph = document.getElementById("markdownArea");
+        resultParagraph.innerHTML = this.md.render(markdownText);
         let container = document.querySelector('.markdown-container');
         container.scrollTop = container.scrollHeight;
     }
 
-    background_btn.disabled = false;
-    event_btn.disabled = false;
-}
+    generateButtons(inputStr) {
+        const markdownContainer = document.getElementById("markdownArea");
+        let optionContainer = document.getElementById("option-container");
 
-async function getEvent() {
-    let resultParagraph = document.getElementById("markdownArea");
-    var md = window.markdownit();
-    var cache_string = "";
-    const sessionId = localStorage.getItem('session_id');
-
-    const response = await fetch('/life-reload/event/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    });
-    const reader = response.body.getReader();
-
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) {
-            break;
+        if (!optionContainer) {
+            optionContainer = document.createElement('div');
+            optionContainer.id = 'option-container';
+            markdownContainer.appendChild(optionContainer);
+        } else {
+            optionContainer.innerHTML = '';
         }
-        const text = new TextDecoder().decode(value);
-        cache_string += text
-        resultParagraph.innerHTML = md.render(cache_string);
-        let container = document.querySelector('.markdown-container');
-        container.scrollTop = container.scrollHeight
+
+        const regex = /(\d+\.)[^0-9]*(?=\d+\.|$)/g;
+        const matches = inputStr.match(regex);
+
+        if (matches) {
+            matches.forEach((option, index) => {
+                const btn = document.createElement("button");
+                btn.innerHTML = this.strongText(option.trim());
+                btn.onclick = () => this.getEval(index + 1);
+                optionContainer.appendChild(btn);
+            });
+
+            markdownContainer.scrollTop = markdownContainer.scrollHeight;
+        }
+    }
+
+    strongText(text) {
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
 }
 
-async function getLifeEvent() {
-    // disable buttons
-    const background_btn = document.querySelector('#backgroundButton');
-    const event_btn = document.querySelector('#eventButton');
-    background_btn.disabled = true;
-    event_btn.disabled = true;
-
-    const flag = await isAlive();
-    if (!flag) {
-        var eventButton = document.getElementById('eventButton');
-        var backgrounButton = document.getElementById('backgroundButton');
-        eventButton.disabled = true;
-        backgrounButton.disabled = false;
-        return ;
-    }
-
-    updatePerson()
-    await getEvent()
-    const response = fetch('/life-reload/parsed_event/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        background_btn.disabled = false;
-        event_btn.disabled = false;
-        return response.json();
-    })
-    .then(data => {
-        let eventValue = data.event;
-        let optionValue = data.option
-        let resultParagraph = document.getElementById("markdownArea");
-        var md = window.markdownit();
-        resultParagraph.innerHTML = md.render(eventValue);
-        generateButtons(optionValue);
-        background_btn.disabled = false;
-        event_btn.disabled = false;
-    })
-    .catch(error => {
-        console.log('There was a problem with the fetch operation:', error.message);
-        background_btn.disabled = false;
-        event_btn.disabled = false;
-    });
-}
-
-async function evaluate(optionNumber) {
-    // disable buttons
-    const background_btn = document.querySelector('#backgroundButton');
-    const event_btn = document.querySelector('#eventButton');
-    background_btn.disabled = true;
-    event_btn.disabled = true;
-
-    // 获取所有按钮
-    var buttons = document.querySelectorAll('#option-container button');
-
-    // 遍历每个按钮并将其设置为不可点击
-    buttons.forEach(function(button) {
-        button.disabled = true;
-    });
-
-    let resultParagraph = document.getElementById("markdownArea");
-    var md = window.markdownit();
-    var cache_string = "";
-    const sessionId = localStorage.getItem('session_id');
-
-    const response = await fetch('/life-reload/evaluation/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId,
-            selection: optionNumber
-        })
-    });
-    const reader = response.body.getReader();
-
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) {
-            break;
-        }
-        const text = new TextDecoder().decode(value);
-        cache_string += text
-        resultParagraph.innerHTML = md.render(cache_string);
-        let container = document.querySelector('.markdown-container');
-        container.scrollTop = container.scrollHeight
-    }
-
-    background_btn.disabled = false;
-    event_btn.disabled = false;
-}
-
-function generateButtons(inputStr) {
-    let parent_container = document.getElementById("markdownArea");
-    let newDiv = document.createElement('div');
-    newDiv.id = 'option-container';
-    parent_container.appendChild(newDiv)
-    const container = document.getElementById("option-container");
-    let markdown_container = document.querySelector('.markdown-container');
-
-    // 使用正则表达式匹配选项
-    const regex = /(\d+\.)[^0-9]*(?=\d+\.|$)/g;
-    const matches = inputStr.match(regex);
-
-    if (matches) {
-        matches.forEach((option, index) => {
-            const btn = document.createElement("button");
-            btn.innerHTML = strongText(option.trim());
-            btn.onclick = () => evaluate(index + 1);
-            container.appendChild(btn);
-            markdown_container.scrollTop = markdown_container.scrollHeight
-        });
-    }
-}
-
-async function isAlive() {
-    const sessionId = localStorage.getItem('session_id');
-
-    const response = await fetch('/life-reload/is_alive/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        if (!data) {
-            await generateEpitaph()
-        }
-        return data
-    } else {
-        console.error("Error fetching data:", response.statusText);
-    }
-
-}
-
-async function generateEpitaph() {
-    var cache_string = "";
-    const sessionId = localStorage.getItem('session_id');
-    let resultParagraph = document.getElementById("markdownArea");
-    var md = window.markdownit();
-
-    const response = await fetch('/life-reload/epitaph/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    });
-    const reader = response.body.getReader();
-
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) {
-            break;
-        }
-        const text = new TextDecoder().decode(value);
-        cache_string += text
-        resultParagraph.innerHTML = md.render(cache_string);
-        let container = document.querySelector('.markdown-container');
-        container.scrollTop = container.scrollHeight;
-    }
-}
-
-async function updatePerson() {
-    const response = fetch('/life-reload/get_person/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            session_id: sessionId
-        })
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // 以"性别"字段为例，检查是否存在，你可以根据需要增加更多的检查条件
-        if (data && data["性别"]) {
-            // 插入数据到HTML中
-            document.getElementById('gender').textContent = data["性别"];
-            document.getElementById('city').textContent = data["城市"];
-            document.getElementById('age').textContent = data["年龄"];
-            document.getElementById('personality').textContent = data["性格"];
-            document.getElementById('charm').textContent = data["属性"]["魅力"];
-            document.getElementById('intelligence').textContent = data["属性"]["智力"];
-            document.getElementById('health').textContent = data["属性"]["健康"];
-            document.getElementById('wealth').textContent = data["属性"]["富裕"];
-            document.getElementById('happiness').textContent = data["属性"]["幸福度"];
-
-            // 显示卡片
-            document.querySelector('.card').style.display = 'flex';
-        }
-    })
-    .catch(error => {
-        console.log('There was a problem with the fetch operation:', error.message);
-    });
-}
-
-function strongText(text) {
-    return text.replace(/\*\*(.*?)\*\*/g, '<span id="bold-text">$1</span>');
+window.onload = function() {
+    const game = new Game();
+    game.init();
 }
