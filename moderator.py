@@ -76,10 +76,9 @@ class Moderator:
         data_dict['events'][-1]['result'] = context
 
         # summarize events
-        chat_list = [
-            SUM, ('user', data_dict['events'][-1]['event']), ('user', person),
-            ('user', options), ('user', selection), ('user', context)
-        ]
+        sum_content = '\n'.join(
+            [data_dict['events'][-1]['event'], options, selection, context])
+        chat_list = [('user', SUM[1].format(sum_content))]
         chat_stream = self.chat(chat_list)
         sum_context = ''
         async for text in chat_stream:
@@ -168,7 +167,7 @@ if __name__ == '__main__':
     moderator = Moderator(debug=True)
 
     session_id = str(uuid.uuid4())
-    session_id = '5b845b00-a839-48f5-8e03-0f38e8cb16f6'
+    session_id = '5b845b00-a839-48f5-8e03-0f38e8cb16f'
     print(session_id)
 
     moderator.init_player(session_id)
@@ -182,3 +181,4 @@ if __name__ == '__main__':
         asyncio.run(
             iterate_stream(
                 moderator.evaluate_selection(session_id, int(selection))))
+    asyncio.run(iterate_stream(moderator.generate_epitaph(session_id)))
