@@ -6,6 +6,8 @@ This Web version maintains the core principles of the original project while inn
 
 You are invited to try the game via this [link](https://sun-zhengwt.com/life-reload/). Our goal with this Web version is to provide a more accessible and intuitive platform, allowing a wider audience to enjoy the unique experience of restarting life through AI technology.
 
+![Life-Reload Simulator Picture](static/Life-Reload.gif)
+
 ## 1. Installing Dependencies
 
 To install the necessary dependencies for this project, use the following command:
