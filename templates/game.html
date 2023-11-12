@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人生重启模拟器</title>
+    <link rel="icon" type="image/png" href="/life-reload/static/icon.png">
+    <link rel="stylesheet" href="/life-reload/static/game.css">
+    <script src="/life-reload/static/game.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@12/dist/markdown-it.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-DB33G935YG"></script>
+    <script>
+        let sessionId = uuidv4();
+        localStorage.setItem('session_id', sessionId);
+    </script>
+
+</head>
+
+<body>
+
+<div class="content">
+<div class="begin">
+    <div id="game-title">人生重启模拟器</div>
+    <div id="opening"></div>
+    <button id="start-button" style="display: none;">开始游戏</button>
+</div>
+
+<div class="game" style="display: none;">
+<div class="centered">
+    <div class="card">
+        <div class="card-title">个人信息</div>
+        <div class="card-row">
+            <div class="card-item">性别: <span id="gender"></span></div>
+            <div class="card-item">城市: <span id="city"></span></div>
+            <div class="card-item">年龄: <span id="age"></span></div>
+            <div class="card-item">性格: <span id="personality"></span></div>
+        </div>
+        <div class="card-row">
+            <div class="card-item">魅力: <span id="charm"></span></div>
+            <div class="card-item">智力: <span id="intelligence"></span></div>
+            <div class="card-item">健康: <span id="health"></span></div>
+            <div class="card-item">富裕: <span id="wealth"></span></div>
+            <div class="card-item">幸福度: <span id="happiness"></span></div>
+        </div>
+    </div>
+
+    <div class="markdown-container" id="markdownArea">
+        <div id="option-container"></div>
+    </div>
+
+    <div class="buttons">
+        <button class="button" id="backgroundButton">重新开始</button>
+        <button class="button" id="eventButton">继续游戏</button>
+    </div>
+
+</div>
+</div>
+</div>
+
+<footer class="site-footer">
+    <p style="margin-top: 7px; margin-bottom: 7px;">&copy; 2023 <a href="https://taited.github.io" target="_blank">Taited</a>
+    | <a href="https://github.com/EmbraceAGI/LifeReloaded/" target="_blank">项目主页</a>
+</p>
+</footer>
+
+</body>
+
+</html>
