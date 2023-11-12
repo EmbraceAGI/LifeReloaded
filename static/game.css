@@ -1,0 +1,187 @@
+html, body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; /* 新增 */
+  }
+
+.content {
+    /* padding-bottom: 70px; */
+    flex: 1;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #202020;
+    color: #f0f0f0;
+    display: flex; /* 新增 */
+    flex-direction: column; /* 新增 */
+    min-height: 100vh; /* 更改为 100vh */
+}
+
+.begin {
+    font-family: 'Helvetica Neue', sans-serif;
+    text-align: center;
+    padding-top: 50px; /* Vertically center the content */
+}
+
+#game-title {
+    color: #f0f0f0; /* 标题颜色改为微亮的白色 */
+    font-size: 48px;
+    margin-bottom: 30px; /* Space before the start button */
+}
+
+#opening {
+    color: #f0f0f0;
+    font-size: 20px;
+    white-space: pre-wrap; /* 保留空白符和换行符 */
+    word-wrap: break-word; /* 在需要的时候进行单词换行 */
+    text-align: center; /* 使文本居中 */
+    padding: 20px;
+    margin-top: 50px; /* 或者根据需要调整 */
+    max-width: 80%; /* 容器最大宽度 */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #282828; /* 与之前的风格保持一致 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* 细微的阴影 */
+}
+
+#start-button {
+    display: inline-block;
+    width: 200px;
+    margin-top: 50px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: #f0f0f0; /* 按钮背景色为微亮的白色 */
+    color: #202020; /* 文本颜色为背景的深灰色 */
+    border: 2px solid #f0f0f0; /* 边框颜色与背景相同 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none; /* Remove underline from links */
+}
+
+#start-button:hover {
+    background-color: #e5e5e5; /* 鼠标悬停时的背景色稍亮 */
+    color: #202020; /* 鼠标悬停时的字体颜色不变 */
+}
+
+.card {
+    display: none;
+    flex-wrap: wrap;
+    max-width: 80%;
+    padding: 15px;
+    margin: 20px auto;
+    border: 1px solid #383838; /* 边框颜色使用更深的灰色 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05); /* 阴影颜色更为微妙 */
+    background-color: #282828; /* 卡片背景色使用更柔和的深灰色 */
+}
+
+.card-title {
+    flex-basis: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: #f0f0f0; /* 标题颜色 */
+}
+
+.card-item {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #d0d0d0; /* 卡片项颜色为稍亮的灰色 */
+}
+
+.card-row {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+#option-container button {
+    margin: 5px;
+    background-color: #383838; /* 选项按钮使用更深的灰色 */
+    color: #f0f0f0; /* 文本颜色为微亮的白色 */
+    font-size: 15px;
+    text-align: left;
+    width: 86%;
+    display: block;
+}
+
+#bold-text {
+    font-weight: bolder;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: 2px solid #f0f0f0; /* 按钮边框设置为微亮的白色 */
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #383838; /* 按钮背景色 */
+    color: #f0f0f0; /* 按钮文本色 */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #505050; /* 鼠标悬停时按钮背景色稍变亮 */
+}
+
+button:disabled {
+    background-color: #303030; /* 不可用按钮背景色更深 */
+    color: #606060; /* 不可用按钮文本色更淡 */
+    cursor: not-allowed;
+}
+
+.markdown-container {
+    border: 1px solid #383838;
+    padding: 15px;
+    margin-bottom: 10px;
+    height: 70%;
+    width: 80%;
+    max-height: 50%;
+    max-width: 80%;
+    overflow-y: auto;
+    background-color: #282828; /* 背景色与卡片背景一致 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.site-footer {
+    text-align: center;
+    background-color: #f2f2f2;
+    color: #333;
+    border-top: 1px solid #e1e1e1;
+    font-size: 14px;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.updated {
+    animation: blink 0.8s linear infinite;
+    font-weight: bold;
+}
