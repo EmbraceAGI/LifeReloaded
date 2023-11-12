@@ -6,6 +6,8 @@ Web版不仅继承了原项目的精髓，还针对 GPT-3.5 特性进行了优�
 
 欢迎通过此[链接](https://sun-zhengwt.com/life-reload/)试玩。我们致力于打造一个更加便捷、直观的平台，带给广大用户由 AI 技术打造的全新人生重启体验。
 
+![Life-Reload Simulator Picture](static/Life-Reload.gif)
+
 ## 1. 安装依赖
 
 要安装此项目所需的依赖，请使用以下命令：
