@@ -32,6 +32,15 @@ class Moderator:
             context += text
             yield text
         data_dict['background'] = context
+
+        # summarize background
+        chat_list = [('user', SUM[1].format(context))]
+        chat_stream = self.chat(chat_list)
+        sum_context = ''
+        async for text in chat_stream:
+            sum_context += text
+        data_dict['background_sum'] = sum_context
+
         self.redis.update(session_id, data_dict)
 
     async def generate_events(self, session_id):
@@ -93,7 +102,7 @@ class Moderator:
 
     async def generate_epitaph(self, session_id):
         data_dict = self.redis.fetch(session_id)
-        pre_prompt = '### 你的历史事件(如果没有内容则表示当前还没有历史事件)\n***\n'
+        pre_prompt = '### 玩家事件(如果没有内容则表示当前还没有历史事件)\n***\n'
         if 'events' in data_dict:
             history = []
             for event in data_dict['events']:
@@ -101,11 +110,14 @@ class Moderator:
                     history.append(event['sum'])
                 else:
                     continue
-            history = '\n***\n'.join(history)
-            history = pre_prompt + history
+            history = '\n- '.join(history)
+            history = pre_prompt + history + '\n```'
         else:
-            history = pre_prompt
-        chat_list = [EPITAPH, ('user', history)]
+            history = pre_prompt + '\n```'
+        person = '### 玩家属性 \n' + str(data_dict['person'])
+        background = '### 玩家背景 \n' + data_dict['background_sum']
+        whole_life = '\n'.join([person, background, history])
+        chat_list = [EPITAPH, ('user', whole_life)]
         chat_stream = self.chat(chat_list)
         context = ''
         async for text in chat_stream:
