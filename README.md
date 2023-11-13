@@ -1,111 +1,66 @@
 # 🐱🐹人生重来模拟器 LifeReloaded🐹🐱 (中文|[English](./README_EN.md))
-![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
 [![GitHub stars](https://img.shields.io/github/stars/hamutama/LifeReloaded?style=social)](https://github.com/hamutama/LifeReloaded/stargazers)
-![version](https://img.shields.io/badge/version-0.2-blue)
+![version](https://img.shields.io/badge/version-0.3-blue)
+<img src="https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white" height="20px">
 
 ## 🌟 引子
 
 > “人生如梦，万事皆空；不过，'空'中便有万事万物。”  
 > 如果你曾对人生有过无数的“如果”和“要是”，**人生重来模拟器 LifeReloaded** 给你一个重开的机会，焕发人生第二春！
 
-## 🔥🔥🔥 11月13日Web版更新
-Web版不仅继承了原项目的精髓，还针对 GPT-3.5 特性进行了优化，简化了玩家的操作体验，无需烦恼 GPT-4 的配置问题。此外，得益于[EmbraceAGI社区](https://github.com/EmbraceAGI/)的支持，项目不断与玩家和开发者互动，推动 AI 在游戏行业的创新发展。
+## 🔥🔥🔥 11月13日Web版更新 (ver 0.3)
+Web版现已更新至0.3版本！此版本不仅继承了原项目的精髓，还针对 GPT-3.5 特性进行了优化，简化了玩家的操作体验。得益于[EmbraceAGI社区](https://github.com/EmbraceAGI/)的支持，我们不断与玩家和开发者互动，推动 AI 在游戏行业的创新发展。
 
-欢迎通过此[链接](https://sun-zhengwt.com/life-reload/)试玩。我们致力于打造一个更加便捷、直观的平台，带给广大用户由 AI 技术打造的全新人生重启体验。
+欢迎通过此[链接](https://sun-zhengwt.com/life-reload/)试玩，享受由 AI 技术打造的全新人生重启体验。
 
 ![Life-Reload Simulator Picture](static/Life-Reload.gif)
 
 ## 🌈 项目概览
 
-该项目是一个使用GPT-4 Advanced Data Analysis（原Code Interpreter）功能驱动的**交互式**模拟人生游戏。
-
-游戏内容由顶尖人工智能 GPT4 实时生成，给您包罗万象，丰富多彩的真实人生体验。
+该项目是一个使用GPT-4 Advanced Data Analysis功能驱动的**交互式**模拟人生游戏。
 
 - **项目名称**: 人生重来模拟器 LifeReloaded
 - **版本**: 0.3 (2023年11月13日更新)
-- **核心驱动**: GPT-4 Advanced Data Analysis
-- **作者**: [陈财猫](https://okjk.co/RBfY7P), [Taited](https://Taited.github.io), [ydyjya](https://www.zhihu.com/people/warrior-18-53)
+- **核心驱动**:
+  - **ChatGPT版本**: GPT-4 Advanced Data Analysis
+  - **Web版**: GPT-3.5-Turbo
+- **作者**: [Taited](https://Taited.github.io), [陈财猫](https://okjk.co/RBfY7P), [ydyjya](https://www.zhihu.com/people/warrior-18-53)
 
 ## 🚀 特性（ver 0.3 updated!）
-- 🚀 **AI驱动,包罗万象**: 由 GPT-4 实时生成内容，事件与属性真·随机，为你带来无限的可能。
-- 📖 **文学+人工智能的完美融合**: 精选现代汉语文学风格，为你带来沉浸式的游戏体验。
-- 🎲 **利用心理学塑造角色**: 利用发展心理学设计人生事件，新增MBTI性格系统。游戏内的人物不是单一的NPC，而是有背景，有立场，有情感的“人”。
-- 🌌 **多元宇宙**: 现在有小概率触发奇异事件，玩家将有机会体验到包括但不限于遇到外星人，穿越，童星之路等的精彩DLC内容。当然，您可自行选择是否穿越。
-- 🛠️ **GPT-3.5-turbo驱动的Web版**: 由[GPT-3.5-turbo API驱动的Web版本](https://sun-zhengwt.com/life-reload/)现已支持!
+- 🌐 **Web版特性**:
+  - ⏰ **游戏时长**: 整个游戏流程的内容生成时间已从原先的30分钟缩短至10分钟，大幅提升了效率。
+  - 🛠️ **交互界面**: 由GPT-3.5-turbo驱动的Web版提供了一个更加便捷且直观的用户交互平台。
+- 🤖 **ChatGPT版特性**
+  - 🚀 **AI驱动,包罗万象**: 由 GPT-4 实时生成内容。
+  - 📖 **文学+人工智能的完美融合**。
+  - 🎲 **利用心理学塑造角色**: 新增MBTI性格系统。
+  - 🌌 **多元宇宙**: 小概率触发奇异事件，如遇到外星人、穿越等。
 
 ## 📥 安装与运行
 ### Web版安装
 #### 1. 安装依赖
-
-要安装此项目所需的依赖，请使用以下命令：
-
 ```bash
 pip install -r requirements.txt
 ```
 
-##### 可选：配置 Redis 以提高性能
-
-如果您希望提高性能，请在本地机器上配置 Redis 服务，并安装 Python redis 依赖：
-
-```bash
-pip install redis
-```
-
 #### 2. 设置环境变量
-
-为了项目的正常运行，您需要设置一些环境变量。
-
-- 在项目根目录中创建一个名为 `.env` 的新文件。
-
-- `.env` 的内容结构应与 `.env.example` 相同。但是，请确保更新特定值。特别是：
-
-  - 将 `OPENAI_API_KEY` 占位符替换为您的实际 API 密钥。
-  - 将 `REDIS` 占位符替换为您的实际 Redis 密码。
-
-**注意**：如果您打算在本地运行项目而不使用 Redis，请按照 `.env.example` 中给出的方式保持 `REDIS` 属性不变。
+- 创建 `.env` 文件，内容结构参照 `.env.example`。
+- 更新 `OPENAI_API_KEY` 和 `REDIS` 等特定值。
 
 #### 3. 运行代码
-
-设置环境变量后，您可以执行以下命令在控制台环境下运行项目：
-
-```
-python moderator.py
-```
-
-如果希望能够在本地部署网页版项目，您可以运行如下的代码：
-
-```
+```bash
 python app.py
 ```
 
-#### 为此存储库做出贡献
-
-为了确保代码的一致性和质量，此存储库使用了 `pre-commit` 工具来自动格式化代码。在进行任何贡献或提交之前，建议您设置 `pre-commit`。
-
-##### 设置 `pre-commit`
-
-1. **安装 `pre-commit`**：使用以下命令安装或升级 `pre-commit`：
-
-   ```bash
-   pip install -U pre-commit
-   ```
-
-2. **安装 Git 钩子**：安装 `pre-commit` 后，您需要为此存储库设置它。运行以下命令：
-
-   ```bash
-   pre-commit install
-   ```
-
-设置完成后，pre-commit 钩子将在每次提交之前自动检查并格式化您的更改。这有助于在整个项目中保持代码的一致性。
+#### 贡献指南
+- 使用 `pre-commit` 工具自动格式化代码。
+- 详细指南见仓库文档。
 
 ### ChatGPT版运行
-要运行游戏， 请打开GPT-4 的 [Advanced Data Analysis（原 Code Interpreter）功能](https://chat.openai.com/?model=gpt-4-code-interpreter)
-，并将[LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)中的所有内容复制粘贴进对话框中运行。
-你可以可以点击[链接](https://chat.openai.com/share/24f85e33-89a5-43be-aa8a-ee7da739c38a)查看prompt
+打开GPT-4 的 [Advanced Data Analysis功能](https://chat.openai.com/?model=gpt-4-code-interpreter) 并运行 [LifeReloaded.txt](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)。
 
 #### 前置条件
-
-⚠️ **请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行。目前该功能仅向ChatGPT Plus用户开放。**
+⚠️ **需开启 GPT-4 的 Advanced Data Analysis功能，目前仅限ChatGPT Plus用户。**
 
 ## 💡 加入社区
 我们的交流社区AIGG（AI Good Games）由[EmbraceAGI](https://github.com/EmbraceAGI)组织支持，背靠[LangGPT](https://github.com/yzfly/LangGPT)结构化提示词项目，目前正在招募新成员。
@@ -181,28 +136,27 @@ python app.py
 
 🔗 本项目使用 [CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议开源。
 
-## 💌 联系作者
+## 💌 联系团队
 
-如有任何疑问或建议，请通过以下方式联系我：
+如有任何疑问或建议，请通过以下方式与我们团队联系：
 
+- 📧 Email: [Taited](mailto:zhengwt.sun@connect.polyu.hk)
 - 📧 Email: [陈财猫🐱](mailto:hamusuta@bupt.cn)
 - 📞 微信公众号: [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg)
 
 ## 广告时间
 
-我会在我的微信公众号[财猫AI](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkxNTU1MTY3OA==&action=getalbum&album_id=3086731117975814150&scene=173&from_msgid=2247484520&from_itemidx=1&count=3&nolastread=1#wechat_redirect)
-上更新一系列提示工程文章，敬请关注。
+我们将在微信公众号[财猫AI](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkxNTU1MTY3OA==&action=getalbum&album_id=3086731117975814150&scene=173&from_msgid=2247484520&from_itemidx=1&count=3&nolastread=1#wechat_redirect)上更新一系列有关提示工程的文章，敬请关注。
 
-此外，你可以在微信读书上读到我的出版书籍《ChatGPT进阶 提示工程入门》，也可以通过电商渠道购买。
+此外，您可以在微信读书上找到我们出版的书籍《ChatGPT进阶 提示工程入门》，也可以通过电商渠道进行购买。
 <img src="./previews/book.jpeg" alt="Book Display" width="300">
 
-## Special Thanks
+## 特别感谢
 
-- [Mr.renedeer项目](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor)，这个才华横溢的Prompt给了我很大启发。
-- 《红楼梦》作者曹雪芹，是他启发我在文中可以插入诗歌。
-- “南瓜博士”公众号，她的“可以使用Code Interpreter做一个[人生重来模拟器的Idea](https://mp.weixin.qq.com/s/gV6xvVVqG8djdmB6EAuZKw)”直接催生了本项目，[该公众号的高质量文章们](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzA4MjM5MDI0Ng==&scene=1&album_id=3104850832623386631&count=3#wechat_redirect)也给我一些启发。
-- [刘海同学](https://nanfangshaonian.feishu.cn/wiki/WkKAwJ90uidtzVkM9IecSZB5nbg)分享的[伪代码提示词文章](https://nanfangshaonian.feishu.cn/wiki/YhNdws9LCi1JxGkpJ8dcXB3Gnih)
-给了本Prompt一些启发。
+- [Mr.renedeer项目](https://github.com/JushBJJ/Mr.-Ranedeer-AI-Tutor)，这个才华横溢的项目给予了我们极大的启发。
+- 《红楼梦》作者曹雪芹，他的作品启发我们在文中融入诗歌元素。
+- “南瓜博士”公众号，其提出的“使用Code Interpreter制作人生重来模拟器”的想法直接催生了本项目，[该公众号的高质量文章](https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MzA4MjM5MDI0Ng==&scene=1&album_id=3104850832623386631&count=3#wechat_redirect)也给予了我们灵感。
+- [刘海同学](https://nanfangshaonian.feishu.cn/wiki/WkKAwJ90uidtzVkM9IecSZB5nbg)分享的[伪代码提示词文章](https://nanfangshaonian.feishu.cn/wiki/YhNdws9LCi1JxGkpJ8dcXB3Gnih)也为本项目提供了启示。
 
 ---
 
