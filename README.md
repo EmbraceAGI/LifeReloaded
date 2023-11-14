@@ -8,7 +8,7 @@
 > “人生如梦，万事皆空；不过，'空'中便有万事万物。”  
 > 如果你曾对人生有过无数的“如果”和“要是”，**人生重来模拟器 LifeReloaded** 给你一个重开的机会，焕发人生第二春！
 
-## 🔥🔥🔥 11月13日Web版更新 (ver 0.3)
+## 🔥🔥🔥 Web版更新 (ver 0.3)
 Web版现已更新至0.3版本！此版本不仅继承了原项目的精髓，还针对 GPT-3.5 特性进行了优化，简化了玩家的操作体验。得益于[EmbraceAGI社区](https://github.com/EmbraceAGI/)的支持，我们不断与玩家和开发者互动，推动 AI 在游戏行业的创新发展。
 
 欢迎通过此[链接](https://sun-zhengwt.com/life-reload/)试玩，享受由 AI 技术打造的全新人生重启体验。
@@ -144,12 +144,12 @@ python app.py
 - 📧 Email: [陈财猫🐱](mailto:hamusuta@bupt.cn)
 - 📞 微信公众号: [财猫AI](https://mp.weixin.qq.com/s/yMZ-Skk6mEa4tQPkHDtFTg)
 
-## 广告时间
+<!-- ## 广告时间
 
 我们将在微信公众号[财猫AI](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzkxNTU1MTY3OA==&action=getalbum&album_id=3086731117975814150&scene=173&from_msgid=2247484520&from_itemidx=1&count=3&nolastread=1#wechat_redirect)上更新一系列有关提示工程的文章，敬请关注。
 
 此外，您可以在微信读书上找到我们出版的书籍《ChatGPT进阶 提示工程入门》，也可以通过电商渠道进行购买。
-<img src="./previews/book.jpeg" alt="Book Display" width="300">
+<img src="./previews/book.jpeg" alt="Book Display" width="300"> -->
 
 ## 特别感谢
 
