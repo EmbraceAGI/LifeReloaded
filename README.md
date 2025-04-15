@@ -11,7 +11,7 @@
 ## 🔥🔥🔥 Web版更新 (ver 0.3)
 Web版现已更新至0.3版本！此版本不仅继承了原项目的精髓，还针对 GPT-3.5 特性进行了优化，简化了玩家的操作体验。得益于[EmbraceAGI社区](https://github.com/EmbraceAGI/)的支持，我们不断与玩家和开发者互动，推动 AI 在游戏行业的创新发展。
 
-欢迎通过此[链接](https://sun-zhengwt.com/life-reload/)试玩，享受由 AI 技术打造的全新人生重启体验。
+欢迎通过此[链接](https://zhengwt-sun.com/life-reload/)试玩，享受由 AI 技术打造的全新人生重启体验。
 
 ![Life-Reload Simulator Picture](static/Life-Reload.gif)
 
